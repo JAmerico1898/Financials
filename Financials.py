@@ -12,6 +12,7 @@ from io import BytesIO
 import urllib.request
 from soccerplots.radar_chart import Radar
 import matplotlib.colors as mcolors
+from scipy.stats import pearsonr
 
 # Setup our colours
 color_link = ['#000000', '#FFFF00', '#1CE6FF', '#FF34FF', '#FF4A46',
@@ -69,7 +70,6 @@ df4 = pd.read_csv("Transparência.csv")
 df5 = pd.read_csv("Transparência (2).csv")
 df6 = pd.read_csv("Painel_Cte (2).csv")
 
-
 clubs = pd.read_csv("clubes.csv")
 alt_clubs = pd.read_csv("alt_clubes.csv")
 
@@ -101,7 +101,7 @@ label_caixa = ["Direitos de transmissão", "Publicidade e patrocínio", "Arrecad
 temas_cont = ["Receita c/ Direitos de Transmissão", "Receita c/ Transmissão + Premiações", "Receita c/ Publicidade e patrocínio", 
          "Receita de Match-Day", "Receita c/ Sócio-torcedor", "Premiações", 
          "Receita c/ Licenciamento da marca", "Receita Recorrente", "Receita c/ Negociação de Atletas", 
-         "Receita Operacional Líquida", "Resultado", "EBITDA", "Dívida", "Despesas gerais e administrativas"]
+         "Receita Operacional Líquida", "Resultado", "Dívida", "Despesas gerais e administrativas"]
 
 # Defining temas esportivos
 temas_esport = ["Folha do futebol", "Aquisições de atletas", "Gastos com a Base", 
@@ -117,7 +117,7 @@ temas_ger = ["Folha do futebol / Receita Operacional Líquida", "Folha futebol +
              "Receita com Venda de Direitos Econômicos / Pontuação Série A", 
              "Receita com Premiação / Folha do Futebol", "Folha do futebol / Pontuação Série A", 
              "Receita Operacional Líquida / Pontuação Série A", "Receita c/ Pay-per-View", 
-             "Dívida / EBITDA", "Dívida / Receita Operacional Líquida",
+             "Dívida / Receita Operacional Líquida",
              "Despesas Administrativas / Folha do Futebol" 
              ]
 
@@ -129,7 +129,7 @@ temas_y = ["Pontuação Série A", "Performance Série A",
            ]
 
 # Defining temas
-temas_x = ["Receita c/ Direitos de transmissão", "Folha do futebol", "Base de Torcedores", "EBITDA", 
+temas_x = ["Receita c/ Direitos de transmissão", "Folha do futebol", "Base de Torcedores", 
            "Dívida", "Aquisições de atletas", "Gastos com a Base", "Receita c/ Negociação de atletas", 
            "Receita Operacional Líquida", "Valor do Elenco (€ milhões)", "PIB do Estado (R bilhões)", 
            "Receita c/ Publicidade e patrocínio", "Receita c/ Match-Day", "Receita c/ Transmissão + Premiações"
@@ -156,9 +156,9 @@ with st.sidebar:
 
 
     choose = option_menu("Análises:", ["Análise Individual - 2023", "Análise Individual - Histórica", 
-                                                    "Análise Comparativa Univariada", "Análise Comparativa Bivariada",
+                                                    "Análise Comparativa Univariada", "Análise Comparativa Bivariada", "Compare 2 clubes!",
                                                     "Índice de Transparência", "Metodologia da Análise"],
-                                icons=['graph-up-arrow', 'zoom-in', 'binoculars', 'magic', 'brightness-high', 'book'],
+                                icons=['graph-up-arrow', 'zoom-in', 'binoculars', 'magic', 'magic', 'brightness-high', 'book'],
                                 menu_icon="universal-access", default_index=0,
                                 styles={
                                 "container": {"padding": "4!important", "background-color": "#fafafa"},
@@ -169,6 +169,184 @@ with st.sidebar:
                                 )    
 
 ###############################################################################################################################
+
+if choose == "Compare 2 clubes!":
+    fontsize = 24
+    clube1 = st.selectbox("Escolha o primeiro Clube", options=clubes, index=None, placeholder="Escolha o primeiro Clube!")
+    clube2 = st.selectbox("Escolha o segundo Clube", options=clubes, index=None, placeholder="Escolha o segundo Clube!")
+
+    if clube1 and clube2:
+
+        if (df1.at[4, clube1] == 0) or (df1.at[4, clube2] == 0):
+
+            #Plotting Headline
+            headline = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{clube1} x {clube2}</div>"
+            st.markdown("<h4 style='text-align: center;'>Comparativo dos Principais Indicadores</h4>", unsafe_allow_html=True)
+            st.markdown(headline, unsafe_allow_html=True)
+
+            dfb = df1.iloc[np.r_[0:6, 7, 9, 22, 26], np.r_[0:21]]
+            dfb_transposed = dfb.T
+            # Set the first row as the new header
+            dfb_transposed.columns = dfb_transposed.iloc[0]
+            # Drop the first row
+            dfb_transposed = dfb_transposed.iloc[1:]
+            # Rename the first column to 'clubs'
+            dfb_transposed.index.name = 'Clubes'
+            dfb = dfb_transposed
+            # Renaming Columns
+            dfb = dfb.rename(columns={"Receita c/ Publicidade e patrocínio": "Publicidade/patrocínio",
+                                    "Receita c/ Match-Day": "Match-Day",
+                                    "Receita c/ Sócio-torcedor": "Sócio-Torcedor",
+                                    "Receita c/ Negociação de atletas": "Venda de jogadores",
+                                    "Receita c/ Transmissão + Premiações": "TV + Premiações",
+                                    "Receita c/ Licenciamento da marca": "Licenciamento",
+                                    "Receita Operacional Líquida": "Rec Oper Líquida" 
+                                    })
+            
+            # Preparing the Graph
+            params = list(dfb.columns)
+            params = params[0:]
+            #Preparing Data
+            ranges = []
+            a_values = []
+            b_values = []
+
+            for x in params:
+                a = min(dfb[params][x])
+                a = a
+                b = max(dfb[params][x])
+                b = b
+                ranges.append((a, b))
+
+            for x in range(len(dfb.index)):
+                if dfb.index[x] == clube1:
+                    a_values = dfb.iloc[x].values.tolist()
+                if dfb.index[x] == clube2:
+                    b_values = dfb.iloc[x].values.tolist()
+                                        
+            a_values = a_values[0:]
+            b_values = b_values[0:]
+
+            # Rounding values to no decimal places
+            a_values = [round(value) for value in a_values]
+            b_values = [round(value) for value in b_values]
+
+            values = [a_values, b_values]
+
+            #Plotting Data
+            title = dict(
+                title_name = clube1,
+                title_color = '#B6282F',
+                subtitle_name = "(R$ milhões)",
+                subtitle_color = '#B6282F',
+                title_name_2 = clube2,
+                title_color_2 = '#344D94',
+                subtitle_name_2 = "(R$ milhões)",
+                subtitle_color_2 = '#344D94',
+                title_fontsize = 18,
+            ) 
+
+            ## instantiate object
+            radar = Radar()
+
+            ## instantiate object -- changing fontsize
+            radar=Radar(fontfamily='Cursive', range_fontsize=14)
+            radar=Radar(fontfamily='Cursive', label_fontsize=14)
+
+            fig,ax = radar.plot_radar(ranges=ranges,params=params,values=values,radar_color=['#B6282F', '#344D94'], dpi=600, alphas=[.6,.5], title=title, compare=True)
+            st.pyplot(fig)
+
+
+
+
+
+        elif (df1.at[4, clube1] != 0) or (df1.at[4, clube2] != 0):
+
+            dfb = df1.iloc[np.r_[47, 1:6, 7, 9, 22, 26], np.r_[0:21]]
+            dfb_transposed = dfb.T
+            # Set the first row as the new header
+            dfb_transposed.columns = dfb_transposed.iloc[0]
+            # Drop the first row
+            dfb_transposed = dfb_transposed.iloc[1:]
+            # Rename the first column to 'clubs'
+            dfb_transposed.index.name = 'Clubes'
+            dfb = dfb_transposed
+            # Renaming Columns
+            dfb = dfb.rename(columns={"Receita c/ Publicidade e patrocínio": "Publicidade/patrocínio",
+                                    "Receita c/ Match-Day": "Match-Day",
+                                    "Receita c/ Sócio-torcedor": "Sócio-Torcedor",
+                                    "Receita c/ Negociação de atletas": "Venda de jogadores",
+                                    "Receita c/ Direitos de transmissão": "Direitos de TV",
+                                    "Receita c/ Licenciamento da marca": "Licenciamento",
+                                    "Receita Operacional Líquida": "Rec Oper Líquida" 
+                                    })
+            
+            # Preparing the Graph
+            params = list(dfb.columns)
+            params = params[0:]
+            #Preparing Data
+            ranges = []
+            a_values = []
+            b_values = []
+
+            for x in params:
+                a = min(dfb[params][x])
+                a = a
+                b = max(dfb[params][x])
+                b = b
+                ranges.append((a, b))
+
+            for x in range(len(dfb.index)):
+                if dfb.index[x] == clube1:
+                    a_values = dfb.iloc[x].values.tolist()
+                if dfb.index[x] == clube2:
+                    b_values = dfb.iloc[x].values.tolist()
+                                        
+            a_values = a_values[0:]
+            b_values = b_values[0:]
+
+            # Rounding values to no decimal places
+            a_values = [round(value) for value in a_values]
+            b_values = [round(value) for value in b_values]
+
+            values = [a_values, b_values]
+
+            #Plotting Data
+            title = dict(
+                title_name = clube1,
+                title_color = '#B6282F',
+                subtitle_name = "(R$ milhões)",
+                subtitle_color = '#B6282F',
+                title_name_2 = clube2,
+                title_color_2 = '#344D94',
+                subtitle_name_2 = "(R$ milhões)",
+                subtitle_color_2 = '#344D94',
+                title_fontsize = 18,
+            ) 
+
+            ## instantiate object
+            radar = Radar()
+
+            ## instantiate object -- changing fontsize
+            radar=Radar(fontfamily='Cursive', range_fontsize=14)
+            radar=Radar(fontfamily='Cursive', label_fontsize=14)
+
+            fig,ax = radar.plot_radar(ranges=ranges,params=params,values=values,radar_color=['#B6282F', '#344D94'], dpi=600, alphas=[.6,.5], title=title, compare=True)
+            st.pyplot(fig)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if choose == "Análise Individual - 2023":
     clube = st.selectbox("Escolha o Clube", options=clubes, index=None, placeholder="Escolha o Clube!")
@@ -1919,6 +2097,380 @@ if choose == "Análise Individual - 2023":
         fontsize=28
         # Player Comparison Data
         markdown_1 = f"<div style='text-align:center;  color: red; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;'>Comparativo com a Média da Liga</h4>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        dfb = df1.iloc[np.r_[47, 1:5, 6:8, 22, 26], np.r_[0:21]]
+        dfb_transposed = dfb.T
+        # Set the first row as the new header
+        dfb_transposed.columns = dfb_transposed.iloc[0]
+        # Drop the first row
+        dfb_transposed = dfb_transposed.iloc[1:]
+        # Rename the first column to 'clubs'
+        dfb_transposed.index.name = 'Clubes'
+        dfb = dfb_transposed
+        # Renaming Columns
+        dfb = dfb.rename(columns={"Receita c/ Publicidade e patrocínio": "Publicidade/patrocínio",
+                                  "Receita c/ Match-Day": "Match-Day",
+                                  "Receita c/ Sócio-torcedor": "Sócio-Torcedor",
+                                  "Receita c/ Negociação de atletas": "Venda de jogadores",
+                                  "Receita c/ Direitos de transmissão": "Direitos de transmissão" 
+                                  })
+        # Preparing the Graph
+        params = list(dfb.columns)
+        params = params[0:]
+
+        #Preparing Data
+        ranges = []
+        a_values = []
+        b_values = []
+
+        for x in params:
+            a = min(dfb[params][x])
+            a = a
+            b = max(dfb[params][x])
+            b = b
+            ranges.append((a, b))
+
+        for x in range(len(dfb.index)):
+            if dfb.index[x] == clube:
+                a_values = dfb.iloc[x].values.tolist()
+            if dfb.index[x] == 'Média da Liga':
+                b_values = dfb.iloc[x].values.tolist()
+                                    
+        a_values = a_values[0:]
+        b_values = b_values[0:]
+
+        # Rounding values to no decimal places
+        a_values = [round(value) for value in a_values]
+        b_values = [round(value) for value in b_values]
+
+        values = [a_values, b_values]
+
+        #Plotting Data
+        title = dict(
+            title_name = clube,
+            title_color = '#B6282F',
+            subtitle_name = "(R$ milhões)",
+            subtitle_color = '#B6282F',
+            title_name_2 = 'Média da Liga',
+            title_color_2 = '#344D94',
+            subtitle_name_2 = "(R$ milhões)",
+            subtitle_color_2 = '#344D94',
+            title_fontsize = 18,
+        ) 
+
+        ## instantiate object
+        radar = Radar()
+
+        ## instantiate object -- changing fontsize
+        radar=Radar(fontfamily='Cursive', range_fontsize=14)
+        radar=Radar(fontfamily='Cursive', label_fontsize=14)
+
+        fig,ax = radar.plot_radar(ranges=ranges,params=params,values=values,radar_color=['#B6282F', '#344D94'], dpi=600, alphas=[.6,.5], title=title, compare=True)
+        st.pyplot(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+#############################################################################################################################################
+#############################################################################################################################################
+
+    elif clube == "Botafogo":
+        markdown_1 = f"<div style='text-align:center;  color: grey   ; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;  color: black;'>Demonstração de Resultado</b></h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center;  color: black;'>(em R$ milhões)<br></b></h5>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        st.markdown("---")
+
+        # Defining labels, sources and targets
+
+        source = [            0, 1, 2, 3, 4, 5, 6, 7, 8,  9, 16, 16, 16, 16, 16, 16, 17, 23, 17, 17, 18] #19 sources
+        target = [            6, 6, 6, 6, 6, 6, 9, 9, 9, 16, 10, 11, 12, 13, 14, 15, 16, 17, 24, 19, 19] #19 targets
+        value = df.iloc[np.r_[0, 1, 2, 3, 4, 5, 6, 7, 8,  9, 10, 11, 12, 13, 14, 15, 25, 23, 24, 17, 19], np.r_[5]].astype(int) #19 values
+        dfa = df.iloc[:, np.r_[5]].astype(int)
+            
+        link = dict(source=source, target=target, value=value, color=color_link)
+        node = dict(label = label, pad=35, thickness=20)
+        data = go.Sankey(link=link, node=node)
+
+        # Set our X and Y co-ords 
+        x = [0.15,   0.15, 0.15, 0.15, 0.15, 0.15,  0.30, 0.375, 0.375, 0.45, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.60, 0.65, 0.75,   0.85,  0.55, 0.60]
+        y = [-0.22, -0.00, 0.22, 0.44, 0.66, 0.88, -0.05, 0.35,   0.65, 0.10, 0.05, 0.20, 0.35, 0.50, 0.65, 0.80, 0.32, -0.15, -0.25, -0.10, -0.25, 0.00]
+        x = [.001 if v==0 else .999 if v==1 else v for v in x]
+        y = [.001 if v==0 else .999 if v==1 else v for v in y]
+
+        # Node Colors
+        color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 
+                          'steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 'maroon', 
+                          'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon','maroon',
+                          'maroon', 'maroon', 'grey', 'maroon', 'grey']
+            
+        color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
+                          'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
+                          'LightSkyBlue', 'indianred', 'indianred',
+                          'indianred', 'indianred', 'indianred', 'indianred', 'indianred',
+                          'indianred', 'darkgrey', 'darkgrey', 'indianred', 'indianred']
+
+        fig = go.Figure(data=[go.Sankey(
+                # The following line hides our labels. They still show
+                # when you hover the mouse over an object
+                textfont=dict(color="rgba(0,0,0,0)", size=1),
+                node = dict(
+                    pad = 35,
+                    line = dict(color = "white", width = 1),
+                    label = label,
+                    x = x,
+                    y = y
+                ),
+                link = dict(
+                    source = source,
+                    target = target,
+                    value = value
+                    ))])
+
+        # Update our chart
+        fig.update_layout(
+            hovermode='x',
+        )
+        # Apply node and link colour choices
+        fig.update_traces(node_color = color_for_nodes,
+                        link_color = color_for_links)
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.43, y=1.39, xanchor='left', showarrow=False, text='<b>Venda de Direitos<br>Liga Forte</b>'))
+        fig.add_annotation(dict(font=dict(color="grey", size=11), x=0.49, y=1.28, showarrow=False, text=f'<b>{dfa.iat[23,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.31, xanchor='left', showarrow=False, text='<b>Direitos de<br>transmissão</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=1.20, showarrow=False, text=f'<b>{dfa.iat[0,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.08, xanchor='left', showarrow=False, text='<b>Publicidade e<br>patrocínio</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.97, showarrow=False, text=f'<b>{dfa.iat[1,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.87, xanchor='left', showarrow=False, text='<b>Arrecadação<br>de jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.76, showarrow=False, text=f'<b>{dfa.iat[2,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.60, xanchor='left', showarrow=False, text='<b>Sócio-torcedor</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.54, showarrow=False, text=f'<b>{dfa.iat[3,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.37, xanchor='left', showarrow=False, text='<b>Premiações</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.28, showarrow=False, text=f'<b>{dfa.iat[4,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.12, xanchor='left', showarrow=False, text='<b>Licenciamento<br>da marca</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.06, showarrow=False, text=f'<b>{dfa.iat[5,0]}</b>'))
+            
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.255, y=1.30, xanchor='left', showarrow=False, text='<b>RECEITA<br>RECORRENTE</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.285, y=1.21, showarrow=False, text=f'<b>{dfa.iat[6,0]}</b>'))
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.27, y=0.76, xanchor='left', showarrow=False, text='<b>Negociação<br>de atletas</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.30, y=0.62, showarrow=False, text=f'<b>{dfa.iat[7,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.27, y=0.35, xanchor='left', showarrow=False, text='<b>Ajutes em<br>ROL</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.30, y=0.25, showarrow=False, text=f'<b>{dfa.iat[8,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.40, y=1.20, xanchor='left', showarrow=False, text='<b>RECEITA<br>OPERACIONAL<BR>LÍQUIDA</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.45, y=1.05, showarrow=False, text=f'<b>{dfa.iat[9,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.56, y=0.50, xanchor='left', showarrow=False, text='<b>DESPESAS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.595, y=0.45, showarrow=False, text=f'<b>{dfa.iat[16,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=1.05, xanchor='left', showarrow=False, text='<b>Pessoal e<br>encargos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.775, y=0.94, showarrow=False, text=f'<b>{dfa.iat[10,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.88, xanchor='left', showarrow=False, text='<b>Direitos de<br>imagem</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.78, y=0.78, showarrow=False, text=f'<b>{dfa.iat[11,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.66, xanchor='left', showarrow=False, text='<b>Despesas com<br>jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.79, y=0.58, showarrow=False, text=f'<b>{dfa.iat[12,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.505, xanchor='left', showarrow=False, text='<b>Despesas gerais<br>e administrativas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.80, y=0.425, showarrow=False, text=f'<b>{dfa.iat[13,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.35, xanchor='left', showarrow=False, text='<b>Depreciação<br>amortização</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.78, y=0.25, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.16, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.795, y=0.10, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.60, y=1.39, xanchor='left', showarrow=False, text='<b>RESULTADO<br>OPERACIONAL</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.65, y=1.30, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.80, y=1.34, xanchor='left', showarrow=False, text='<b>RESULTADO<br>FINANCEIRO</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.85, y=1.25, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.88, y=1.16, xanchor='left', showarrow=False, text='<b>RESULTADO</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.11, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.54, y=0.98, xanchor='left', showarrow=False, text='<b>Outras Receitas<br>Operacionais</b>'))
+        fig.add_annotation(dict(font=dict(color="grey", size=10), x=0.595, y=0.89, showarrow=False, text=f'<b>{dfa.iat[24,0]}</b>'))
+
+        fig.add_layout_image(
+            dict(
+                source="https://raw.githubusercontent.com/JAmerico1898/Financials/b8aa21e79bd9f585f0acd3daf3d22d6c1002c314/Botafogo.png",  # Change this to your image path
+                xref="paper",  # Use "paper" for relative positioning within the plot
+                yref="paper",
+                x=1,  # Bottom left corner
+                y=0,  # Bottom left corner
+                sizex=0.1,  # Size of the image in x-axis proportion of plot's width
+                sizey=0.1,  # Size of the image in y-axis proportion of plot's height
+                xanchor="right",  # Anchor point is set to the left of the image
+                yanchor="bottom"  # Anchor point is set to the bottom of the image
+            )
+        )
+
+        st.plotly_chart(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+
+        markdown_1 = f"<div style='text-align:center;  color: grey; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;  color: black;'>Demonstração de Fluxo de Caixa</b></h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center;  color: black;'>(em R$ milhões)<br></b></h5>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        st.markdown("---")
+
+        # Defining labels, sources and targets
+
+        source =              [0, 1, 2, 3, 4, 5, 6,  8,  7,  8,  8,   8,  8,  8, 14, 15, 20, 20, 16, 16, 16, 22] #21 sources
+        target =              [7, 7, 7, 7, 7, 7, 7, 15,  8,  9, 10,  11, 12, 13, 8,  16, 16, 21, 17, 18, 19, 15] #21 targets
+        value = df2.iloc[np.r_[0, 1, 2, 3, 4, 5, 6, 21,  7,  9, 10,  11, 12, 13, 14, 15, 20, 21, 17, 18, 19, 22], np.r_[5]].astype(int) #19 values
+        dfa = df2.iloc[:, np.r_[5]].astype(int)
+        link = dict(source=source, target=target, value=value, color=color_link)
+        node = dict(label = label_caixa, pad=35, thickness=20)
+        data = go.Sankey(link=link, node=node)
+
+        # Set our X and Y co-ords 
+        x = [0.15, 0.15, 0.15, 0.15, 0.15, 0.15,   0.15, 0.30, 0.42, 0.55, 0.55, 0.55, 0.55,  0.55,  0.35, 0.60,  0.78, 0.92, 0.92, 0.88, 0.68,  0.88, 0.45]
+        y = [-0.22, -0.00, 0.22, 0.44, 0.66, 0.88, 1.08, 0.00, 0.35, 0.45, 0.60, 0.75, 0.90, 1.15,  0.90, -0.05, -0.05, 0.05, 0.20, 0.30, 0.15,  0.60, -0.20]
+        x = [.001 if v==0 else .999 if v==1 else v for v in x]
+        y = [.001 if v==0 else .999 if v==1 else v for v in y]
+
+        # Node Colors
+        color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 
+                          'steelblue', 'steelblue', 'steelblue', 'maroon', 'maroon', 'maroon', 
+                          'maroon', 'maroon', 'maroon', 'steelblue', 'limegreen', 'maroon',
+                          'maroon', 'maroon', 'maroon', 'limegreen', 'limegreen', 'grey']
+            
+        color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
+                          'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'indianred',
+                          'indianred', 'indianred', 'indianred', 'indianred',
+                          'indianred', 'indianred', 'LightSkyBlue', 'indianred', 'Lime',
+                          'Lime', 'indianred', 'indianred', 'indianred', 'darkgrey']
+
+        fig = go.Figure(data=[go.Sankey(
+                # The following line hides our labels. They still show
+                # when you hover the mouse over an object
+                textfont=dict(color="rgba(0,0,0,0)", size=1),
+                node = dict(
+                    pad = 35,
+                    line = dict(color = "white", width = 1),
+                    label = label_caixa,
+                    x = x,
+                    y = y
+                ),
+                link = dict(
+                    source = source,
+                    target = target,
+                    value = value
+                    ))])
+
+        # Update our chart
+        fig.update_layout(
+            hovermode='x',
+        )
+        # Apply node and link colour choices
+        fig.update_traces(node_color = color_for_nodes,
+                        link_color = color_for_links)
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.39, y=1.385, xanchor='left', showarrow=False, text='<b>Venda de Direitos<br>Liga Forte</b>'))
+        fig.add_annotation(dict(font=dict(color="grey", size=11), x=0.45, y=1.27, showarrow=False, text=f'<b>{dfa.iat[22,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.31, xanchor='left', showarrow=False, text='<b>Direitos de<br>transmissão</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=1.20, showarrow=False, text=f'<b>{dfa.iat[0,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.08, xanchor='left', showarrow=False, text='<b>Publicidade e<br>patrocínio</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.97, showarrow=False, text=f'<b>{dfa.iat[1,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.87, xanchor='left', showarrow=False, text='<b>Arrecadação<br>de jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.76, showarrow=False, text=f'<b>{dfa.iat[2,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.60, xanchor='left', showarrow=False, text='<b>Sócio-torcedor</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.54, showarrow=False, text=f'<b>{dfa.iat[3,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.37, xanchor='left', showarrow=False, text='<b>Premiações</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.28, showarrow=False, text=f'<b>{dfa.iat[4,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.12, xanchor='left', showarrow=False, text='<b>Licenciamento<br>da marca</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=0.06, showarrow=False, text=f'<b>{dfa.iat[5,0]}</b>'))
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=-0.13, xanchor='left', showarrow=False, text='<b>Negociação<br>de atletas</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.05, y=-0.19, showarrow=False, text=f'<b>{dfa.iat[6,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.26, y=1.27, xanchor='left', showarrow=False, text='<b>GERAÇÃO DE<br>CAIXA TOTAL</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.285, y=1.17, showarrow=False, text=f'<b>{dfa.iat[7,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.37, y=0.90, xanchor='left', showarrow=False, text='<b>SAÍDAS DE CAIXA<br>OPERACIONAIS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.43, y=0.81, showarrow=False, text=f'<b>{dfa.iat[8,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.54, y=1.25, xanchor='left', showarrow=False, text='<b>GERAÇÃO DE CAIXA<br>OPERACIONAL</b>'))
+        fig.add_annotation(dict(font=dict(color="LIMEGREEN", size=10), x=0.60, y=1.15, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=0.58, xanchor='left', showarrow=False, text='<b>Pessoal e<br>encargos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.6, y=0.51, showarrow=False, text=f'<b>{dfa.iat[9,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=0.41, xanchor='left', showarrow=False, text='<b>Direitos de<br>imagem</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.60, y=0.34, showarrow=False, text=f'<b>{dfa.iat[10,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=0.21, xanchor='left', showarrow=False, text='<b>Despesas com<br>jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.61, y=0.16, showarrow=False, text=f'<b>{dfa.iat[11,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=0.05, xanchor='left', showarrow=False, text='<b>Despesas gerais<br>e administrativas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.62, y=-0.0, showarrow=False, text=f'<b>{dfa.iat[12,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=-0.15, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.62, y=-0.2, showarrow=False, text=f'<b>{dfa.iat[13,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.23, y=0.12, xanchor='left', showarrow=False, text='<b>Ajuste na Geração de<br>Caixa Operacional</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.29, y=0.06, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.725, y=1.32, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A INVESTIMENTOS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.795, y=1.22, showarrow=False, text=f'<b>{dfa.iat[16,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.91, y=1.10, xanchor='left', showarrow=False, text='<b>Compra<br>de Jogadores</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.965, y=0.99, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.91, y=0.90, xanchor='left', showarrow=False, text='<b>Compra de<br>Imobilizado</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.96, y=0.81, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.52, y=0.90, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.58, y=0.81, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.85, y=0.28, xanchor='left', showarrow=False, text='<b>AUMENTO<br>DE CAIXA</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.90, y=0.18, showarrow=False, text=f'<b>{dfa.iat[21,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.85, y=0.58, xanchor='left', showarrow=False, text='<b>Mútuo c/ Partes<br>Relacionadas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.89, y=0.48, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
+
+        fig.add_layout_image(
+            dict(
+                source="https://raw.githubusercontent.com/JAmerico1898/Financials/b8aa21e79bd9f585f0acd3daf3d22d6c1002c314/Botafogo.png",  # Change this to your image path
+                xref="paper",  # Use "paper" for relative positioning within the plot
+                yref="paper",
+                x=1,  # Bottom left corner
+                y=0,  # Bottom left corner
+                sizex=0.1,  # Size of the image in x-axis proportion of plot's width
+                sizey=0.1,  # Size of the image in y-axis proportion of plot's height
+                xanchor="right",  # Anchor point is set to the left of the image
+                yanchor="bottom"  # Anchor point is set to the bottom of the image
+            )
+        )
+
+        st.plotly_chart(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+
+        #Plotar Gráfico Alternativo
+        fontsize=28
+        # Player Comparison Data
+        markdown_1 = f"<div style='text-align:center;  color: grey; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
         st.markdown("<h4 style='text-align: center;'>Comparativo com a Média da Liga</h4>", unsafe_allow_html=True)
         st.markdown(markdown_1, unsafe_allow_html=True)
         dfb = df1.iloc[np.r_[47, 1:5, 6:8, 22, 26], np.r_[0:21]]
@@ -7503,138 +8055,6 @@ elif choose == "Análise Comparativa Univariada":
 #######################################################################################################################################
 ########################################################################################################################################
 
-    elif tema_cont == "EBITDA":
-        markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{tema_cont:}</div>"
-        st.markdown("<h4 style='text-align: center;  color: black;'>Análise Comparativa Univariada (2023)</b></h4>", unsafe_allow_html=True)
-        st.markdown(markdown_1, unsafe_allow_html=True)
-        st.markdown("---")
-
-        tópico = df1.iloc[19, 1:].values
-
-        # Pairing clubs with their revenues and sorting them by revenue in descending order
-        paired_clubs_revenues = sorted(zip(clubes, tópico), key=lambda x: x[1], reverse=True)
-        sorted_clubes, sorted_revenues = zip(*paired_clubs_revenues)
-
-        def getImage(url):
-            try:
-                with urllib.request.urlopen(url) as response:
-                    img = Image.open(response)
-                    return OffsetImage(img, zoom=1.25)
-            except Exception as e:
-                st.error(f"Error loading image from {url}: {e}")
-                return None
-
-        fig, ax = plt.subplots(figsize=(15, 10))
-        ax.set_xlim(-0.5, len(sorted_clubes)-0.5)
-        # Set ylim if necessary to create space for club icons
-
-        # Increase the ylim if necessary to create more space for club icons
-        max_revenue = max(sorted_revenues)
-        ax.set_ylim(-max_revenue*0.2, max_revenue*1.07)  # Adjusting space at the bottom for icons
-
-        bars = ax.bar(range(len(sorted_clubes)), sorted_revenues, color='skyblue')
-
-        # Modify this part of your plotting code
-        for i, club in enumerate(sorted_clubes):
-            img_path = club_image_paths.get(club)
-            if img_path:
-                img = getImage(img_path)
-                if img:
-                    # Get the index for the selected categories (eixo_x, eixo_y)
-                    ab = AnnotationBbox(img, (i, -max_revenue*0.15),  # Adjusting for better alignment
-                                        xycoords='data', boxcoords="data",
-                                        box_alignment=(0.5, 0), frameon=False)
-                    ax.add_artist(ab)
-                else:
-                    print(f"Failed to load image for {club}")
-
-        ax.set_xticks([])
-
-        #ax.set_xlabel('Clubes', fontsize=20, fontweight='bold')
-        ax.set_ylabel(f'{tema_cont} (R$ milhões)', fontsize=20, fontweight='bold')
-        ax.tick_params(axis='y', labelsize=16)
-        ax.spines['right'].set_visible(False)
-        ax.spines['top'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-
-        # Adding text above bars
-        for bar in bars:
-            height = bar.get_height()
-            ax.annotate(f'{height:.0f}',
-                        xy=(bar.get_x() + bar.get_width() / 2, height),
-                        xytext=(0, 3),  # 3 points vertical offset
-                        textcoords="offset points",
-                        ha='center', va='bottom', fontsize=16)
-
-        fig.tight_layout()
-        st.pyplot(fig)
-
-#######################################################################################################################################
-
-        st.markdown("<h4 style='text-align: center;  color: black;'>Análise Comparativa 2019-2023 (em moeda constante)</b></h4>", unsafe_allow_html=True)
-        markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{highlight:} (em destaque)</div>"
-        st.markdown(markdown_1, unsafe_allow_html=True)
-        st.markdown("---")
-
-        years = ['2019', '2020', '2021', '2022', '2023']
-
-        tópico2 = df3.iloc[12, 1:].values
-        club_data = {
-            'América': tópico2[:5][::-1][:5],
-            'Atlético': tópico2[5:10][::-1][:5],
-            'Athletico': tópico2[10:15][::-1][:5],
-            'Bahia': tópico2[15:20][::-1][:5],
-            'Botafogo': tópico2[20:25][::-1][:5],
-            'Corinthians': tópico2[25:30][::-1][:5],
-            'Coritiba': tópico2[30:35][::-1][:5],
-            'Cruzeiro': tópico2[35:40][::-1][:5],
-            'Cuiabá': tópico2[40:45][::-1][:5],
-            'Flamengo': tópico2[45:50][::-1][:5],
-            'Fluminense': tópico2[50:55][::-1][:5],
-            'Fortaleza': tópico2[55:60][::-1][:5],
-            'Grêmio': tópico2[60:65][::-1][:5],
-            'Goiás': tópico2[65:70][::-1][:5],
-            'Internacional': tópico2[70:75][::-1][:5],
-            'Palmeiras': tópico2[75:80][::-1][:5],
-            'Santos': tópico2[80:85][::-1][:5],
-            'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
-        }
-
-        # Plotting each club's data
-        fig, ax = plt.subplots(figsize=(11, 8))  # Set the size of the plot
-
-        # Plot each club's data
-        for club, data in club_data.items():
-            if club == highlight:
-                ax.plot(years, data, label=club, linewidth=3.5, linestyle='-', color='steelblue')  # Highlighted line
-                # Annotate each point on the highlighted club's line
-                for i, value in enumerate(data):
-                    ax.annotate(f'{value:.0f}',  # Text to display
-                                (years[i], value),  # Point to annotate
-                                textcoords="offset points",  # how to position the text
-                                xytext=(0,10),  # distance from text to points (x,y)
-                                ha='center',  # horizontal alignment can be left, right or center
-                                va='bottom',
-                                fontsize=14, 
-                                fontweight='bold')
-            else:
-                ax.plot(years, data, label=club, linewidth=1, linestyle='--', color='black')  # Non-highlighted lines
-
-        # Adding titles and labels
-        #ax.set_xlabel('Anos', fontsize=14, fontweight='bold')
-        ax.set_ylabel(f'{tema_cont} (R$ milhões)', fontsize=14, fontweight='bold')
-        ax.tick_params(axis='y', labelsize=12)
-        ax.tick_params(axis='x', labelsize=12)
-        ax.spines['right'].set_visible(False)
-        ax.spines['top'].set_visible(False)
-
-        # Show the plot
-        st.pyplot(fig)
-
-#######################################################################################################################################
-########################################################################################################################################
 
     elif tema_cont == "Dívida":
         markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{tema_cont:}</div>"
@@ -9996,139 +10416,6 @@ elif choose == "Análise Comparativa Univariada":
 ###############################################################################################################################################
 ###############################################################################################################################################
 
-    elif tema_ger == "Dívida / EBITDA":
-        markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{tema_ger:}</div>"
-        st.markdown("<h4 style='text-align: center;  color: black;'>Análise Comparativa Univariada (2023)</b></h4>", unsafe_allow_html=True)
-        st.markdown(markdown_1, unsafe_allow_html=True)
-        st.markdown("---")
-
-        tópico = df1.iloc[49, 1:].values
-
-        # Pairing clubs with their revenues and sorting them by revenue in descending order
-        paired_clubs_revenues = sorted(zip(clubes, tópico), key=lambda x: x[1], reverse=False)
-        sorted_clubes, sorted_revenues = zip(*paired_clubs_revenues)
-
-        def getImage(url):
-            try:
-                with urllib.request.urlopen(url) as response:
-                    img = Image.open(response)
-                    return OffsetImage(img, zoom=1.25)
-            except Exception as e:
-                st.error(f"Error loading image from {url}: {e}")
-                return None
-
-        fig, ax = plt.subplots(figsize=(15, 10))
-        ax.set_xlim(-0.5, len(sorted_clubes)-0.5)
-        # Set ylim if necessary to create space for club icons
-
-        # Increase the ylim if necessary to create more space for club icons
-        max_revenue = max(sorted_revenues)
-        ax.set_ylim(-max_revenue*0.2, max_revenue*1.07)  # Adjusting space at the bottom for icons
-
-        bars = ax.bar(range(len(sorted_clubes)), sorted_revenues, color='skyblue')
-
-        # Modify this part of your plotting code
-        for i, club in enumerate(sorted_clubes):
-            img_path = club_image_paths.get(club)
-            if img_path:
-                img = getImage(img_path)
-                if img:
-                    # Get the index for the selected categories (eixo_x, eixo_y)
-                    ab = AnnotationBbox(img, (i, -max_revenue*0.15),  # Adjusting for better alignment
-                                        xycoords='data', boxcoords="data",
-                                        box_alignment=(0.5, 0), frameon=False)
-                    ax.add_artist(ab)
-                else:
-                    print(f"Failed to load image for {club}")
-
-        ax.set_xticks([])
-
-        #ax.set_xlabel('Clubes', fontsize=20, fontweight='bold')
-        ax.set_ylabel(f'{tema_ger}', fontsize=20, fontweight='bold')
-        ax.tick_params(axis='y', labelsize=16, left=False, labelleft=False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['top'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.spines['bottom'].set_visible(False)
-
-        # Adding text above bars
-        for bar in bars:
-            height = bar.get_height()
-            ax.annotate(f'{height:.2f}',
-                        xy=(bar.get_x() + bar.get_width() / 2, height),
-                        xytext=(0, 3),  # 3 points vertical offset
-                        textcoords="offset points",
-                        ha='center', va='bottom', fontsize=15)
-
-        fig.tight_layout()
-        st.pyplot(fig)
-
-#######################################################################################################################################
-
-        st.markdown("<h4 style='text-align: center;  color: black;'>Análise Comparativa 2019-2023 (em moeda constante)</b></h4>", unsafe_allow_html=True)
-        markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{highlight:} (em destaque)</div>"
-        st.markdown(markdown_1, unsafe_allow_html=True)
-        st.markdown("---")
-
-        years = ['2019', '2020', '2021', '2022', '2023']
-
-        tópico2 = df3.iloc[30, 1:].values
-        club_data = {
-            'América': tópico2[:5][::-1][:5],
-            'Atlético': tópico2[5:10][::-1][:5],
-            'Athletico': tópico2[10:15][::-1][:5],
-            'Bahia': tópico2[15:20][::-1][:5],
-            'Botafogo': tópico2[20:25][::-1][:5],
-            'Corinthians': tópico2[25:30][::-1][:5],
-            'Coritiba': tópico2[30:35][::-1][:5],
-            'Cruzeiro': tópico2[35:40][::-1][:5],
-            'Cuiabá': tópico2[40:45][::-1][:5],
-            'Flamengo': tópico2[45:50][::-1][:5],
-            'Fluminense': tópico2[50:55][::-1][:5],
-            'Fortaleza': tópico2[55:60][::-1][:5],
-            'Grêmio': tópico2[60:65][::-1][:5],
-            'Goiás': tópico2[65:70][::-1][:5],
-            'Internacional': tópico2[70:75][::-1][:5],
-            'Palmeiras': tópico2[75:80][::-1][:5],
-            'Santos': tópico2[80:85][::-1][:5],
-            'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
-        }
-
-        # Plotting each club's data
-        fig, ax = plt.subplots(figsize=(11, 8))  # Set the size of the plot
-
-        # Plot each club's data
-        for club, data in club_data.items():
-            if club == highlight:
-                ax.plot(years, data, label=club, linewidth=3.5, linestyle='-', color='steelblue')  # Highlighted line
-                # Annotate each point on the highlighted club's line
-                for i, value in enumerate(data):
-                    ax.annotate(f'{value:.2f}',  # Text to display
-                                (years[i], value),  # Point to annotate
-                                textcoords="offset points",  # how to position the text
-                                xytext=(0,10),  # distance from text to points (x,y)
-                                ha='center',  # horizontal alignment can be left, right or center
-                                va='bottom',
-                                fontsize=14, 
-                                fontweight='bold')
-            else:
-                ax.plot(years, data, label=club, linewidth=1, linestyle='--', color='black')  # Non-highlighted lines
-
-        # Adding titles and labels
-        #ax.set_xlabel('Anos', fontsize=14, fontweight='bold')
-        ax.set_ylabel(f'{tema_ger} (R$ milhões)', fontsize=14, fontweight='bold')
-        ax.tick_params(axis='y', labelsize=12)
-        ax.tick_params(axis='x', labelsize=12)
-        ax.spines['right'].set_visible(False)
-        ax.spines['top'].set_visible(False)
-
-        # Show the plot
-        st.pyplot(fig)
-
-###############################################################################################################################################
-###############################################################################################################################################
-
     elif tema_ger == "Dívida / Receita Operacional Líquida":
         markdown_1 = f"<div style='text-align:center;  color: black; font-weight: bold; font-size:{fontsize}px'>{tema_ger:}</div>"
         st.markdown("<h4 style='text-align: center;  color: black;'>Análise Comparativa Univariada (2023)</b></h4>", unsafe_allow_html=True)
@@ -10732,6 +11019,12 @@ elif choose == "Análise Comparativa Bivariada":
             ax.set_ylim([min(result_y) - 1, max(result_y) + 20])
             #current_ticks = ax.get_xticks()
             #ax.set_xticklabels([f'{int(tick)}' for tick in current_ticks])
+
+            # Calculate Pearson correlation coefficient
+            corr_coef, _ = pearsonr(result_x, result_y)
+
+            ax.text(0.95, 0.05, f'Pearson r={corr_coef:.2f}', transform=ax.transAxes, 
+            horizontalalignment='right', verticalalignment='bottom', fontsize=12)
 
             # Dynamically adjust y-axis limits based on data
             y_min, y_max = min(result_y), max(result_y)
