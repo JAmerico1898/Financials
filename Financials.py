@@ -5659,6 +5659,7 @@ if choose == "Análise Individual - 2023":
         target =              [7, 7, 7, 7, 7, 15,  8, 9, 10, 11, 12, 13, 8, 15, 16, 16, 17, 18, 21 ] #18 targets
         value = df2.iloc[np.r_[0, 1, 2, 3, 6, 22,  7, 9, 10, 11, 12, 13, 14, 23, 15, 24, 17, 18, 21], np.r_[7]].astype(int) #19 values
         dfa = df2.iloc[:, np.r_[7]].astype(int)
+
         link = dict(source=source, target=target, value=value, color=color_link)
         node = dict(label = label_caixa, pad=35, thickness=20)
         data = go.Sankey(link=link, node=node)
@@ -5773,6 +5774,374 @@ if choose == "Análise Individual - 2023":
         fig.add_layout_image(
             dict(
                 source="https://raw.githubusercontent.com/JAmerico1898/Financials/b8aa21e79bd9f585f0acd3daf3d22d6c1002c314/Coritiba.png",  # Change this to your image path
+                xref="paper",  # Use "paper" for relative positioning within the plot
+                yref="paper",
+                x=1,  # Bottom right corner
+                y=0,  # Bottom left corner
+                sizex=0.1,  # Size of the image in x-axis proportion of plot's width
+                sizey=0.1,  # Size of the image in y-axis proportion of plot's height
+                xanchor="right",  # Anchor point is set to the left of the image
+                yanchor="bottom"  # Anchor point is set to the bottom of the image
+            )
+        )
+
+        st.plotly_chart(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+
+        #Plotar Gráfico Alternativo
+        fontsize=28
+        # Player Comparison Data
+        markdown_1 = f"<div style='text-align:center;  color: green; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;'>Comparativo com a Média da Liga</h4>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        dfb = df1.iloc[np.r_[0:4, 6:8, 22, 26], np.r_[0:21]]
+        dfb_transposed = dfb.T
+        # Set the first row as the new header
+        dfb_transposed.columns = dfb_transposed.iloc[0]
+        # Drop the first row
+        dfb_transposed = dfb_transposed.iloc[1:]
+        # Rename the first column to 'clubs'
+        dfb_transposed.index.name = 'Clubes'
+        dfb = dfb_transposed
+        # Renaming Columns
+        dfb = dfb.rename(columns={"Receita c/ Publicidade e patrocínio": "Publicidade/patrocínio",
+                                  "Receita c/ Match-Day": "Match-Day",
+                                  "Receita c/ Sócio-torcedor": "Sócio-Torcedor",
+                                  "Receita c/ Negociação de atletas": "Venda de jogadores",
+                                  "Receita c/ Transmissão + Premiações": "Transmissão/Premiações",
+                                  "RECEITA RECORRENTE": "Receita Recorrente" 
+                                  })
+        # Preparing the Graph
+        params = list(dfb.columns)
+        params = params[0:]
+
+        #Preparing Data
+        ranges = []
+        a_values = []
+        b_values = []
+
+        for x in params:
+            a = min(dfb[params][x])
+            a = a
+            b = max(dfb[params][x])
+            b = b
+            ranges.append((a, b))
+
+        for x in range(len(dfb.index)):
+            if dfb.index[x] == clube:
+                a_values = dfb.iloc[x].values.tolist()
+            if dfb.index[x] == 'Média da Liga':
+                b_values = dfb.iloc[x].values.tolist()
+                                    
+        a_values = a_values[0:]
+        b_values = b_values[0:]
+
+        # Rounding values to no decimal places
+        a_values = [round(value) for value in a_values]
+        b_values = [round(value) for value in b_values]
+
+        values = [a_values, b_values]
+
+        #Plotting Data
+        title = dict(
+            title_name = clube,
+            title_color = '#B6282F',
+            subtitle_name = "(R$ milhões)",
+            subtitle_color = '#B6282F',
+            title_name_2 = 'Média da Liga',
+            title_color_2 = '#344D94',
+            subtitle_name_2 = "(R$ milhões)",
+            subtitle_color_2 = '#344D94',
+            title_fontsize = 18,
+        ) 
+
+        ## instantiate object
+        radar = Radar()
+
+        ## instantiate object -- changing fontsize
+        radar=Radar(fontfamily='Cursive', range_fontsize=14)
+        radar=Radar(fontfamily='Cursive', label_fontsize=14)
+
+        fig,ax = radar.plot_radar(ranges=ranges,params=params,values=values,radar_color=['#B6282F', '#344D94'], dpi=600, alphas=[.6,.5], title=title, compare=True)
+        #fig,ax = radar.plot_radar(ranges=ranges,params=params,values=values,radar_color=['#7eb6e0', '#f77b72'], dpi=600, alphas=[.8,.6], title=title, compare=True)
+        st.pyplot(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+#############################################################################################################################################
+#############################################################################################################################################
+
+
+    elif clube == "Cruzeiro":
+        markdown_1 = f"<div style='text-align:center;  color: blue; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;  color: black;'>Demonstração de Resultado</b></h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center;  color: black;'>(em R$ milhões)<br></b></h5>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        st.markdown("---")
+
+        # Defining labels, sources and targets
+
+        source =              [0, 1, 2, 3, 5, 6, 7, 9,  16, 16, 16, 16, 16, 16, 17, 23, 17, 18, 17] #17 sources
+        target =              [6, 6, 6, 6, 6, 9, 9, 16, 10, 11, 12, 13, 14, 15, 16, 17, 24, 19, 19] #17 targets
+        value = df.iloc[np.r_[ 0, 1, 2, 3, 5, 6, 7, 9,  10, 11, 12, 13, 14, 15, 25, 23, 24, 18, 17], np.r_[8]].astype(int) #18 values
+        dfa = df.iloc[:, np.r_[8]].astype(int)
+            
+        link = dict(source=source, target=target, value=value, color=color_link)
+        node = dict(label = label, pad=35, thickness=20)
+        data = go.Sankey(link=link, node=node)
+
+        # Set our X and Y co-ords 
+        x = [0.15,  0.15, 0.15, 0.15, 0.15, 0.295, 0.35, 0.425,  0.75, 0.75, 0.75, 0.75, 0.75, 0.60, 0.52, 0.75, 0.90, 0.42, 0.75]
+        y = [-0.23, 0.00, 0.20, 0.40, 0.60, -0.05, 0.40,  0.20, 0.15, 0.30, 0.45, 0.60, 0.75, 0.30, -0.15, -0.10, -0.23, -0.25, 0.00]
+        x = [.001 if v==0 else .999 if v==1 else v for v in x]
+        y = [.001 if v==0 else .999 if v==1 else v for v in y]
+
+        # Node Colors
+        color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 
+                          'steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 'maroon', 
+                          'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'limegreen', 
+                          'maroon', 'limegreen', 'limegreen', 'maroon','limegreen','gray', 'maroon'  
+                          ]
+            
+        color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
+                          'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'indianred',
+                          'indianred', 'indianred', 'indianred', 'indianred',
+                          'indianred', 'indianred', 'indianred', 'darkgrey', 'indianred',
+                          'indianred', 'Lime']
+
+        fig = go.Figure(data=[go.Sankey(
+                # The following line hides our labels. They still show
+                # when you hover the mouse over an object
+                textfont=dict(color="rgba(0,0,0,0)", size=1),
+                node = dict(
+                    pad = 35,
+                    line = dict(color = "white", width = 1),
+                    label = label,
+                    x = x,
+                    y = y
+                ),
+                link = dict(
+                    source = source,
+                    target = target,
+                    value = value
+                    ))])
+
+        # Update our chart
+        fig.update_layout(
+            hovermode='x',
+        )
+        # Apply node and link colour choices
+        fig.update_traces(node_color = color_for_nodes,
+                        link_color = color_for_links)
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.36, xanchor='left', showarrow=False, text='<b>Direitos de<br>transmissão e<br>Premiações</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.06, y=1.20, showarrow=False, text=f'<b>{dfa.iat[0,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.08, xanchor='left', showarrow=False, text='<b>Publicidade e<br>patrocínio</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.06, y=0.97, showarrow=False, text=f'<b>{dfa.iat[1,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=0.87, xanchor='left', showarrow=False, text='<b>Arrecadação<br>de jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.06, y=0.75, showarrow=False, text=f'<b>{dfa.iat[2,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.04, y=0.62, xanchor='left', showarrow=False, text='<b>Sócio<br>Torcedor</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.065, y=0.54, showarrow=False, text=f'<b>{dfa.iat[3,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.25, y=1.255, xanchor='left', showarrow=False, text='<b>RECEITA<br>RECORRENTE</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.28, y=1.16, showarrow=False, text=f'<b>{dfa.iat[6,0]}</b>'))
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.04, y=0.41, xanchor='left', showarrow=False, text='<b>Licenciamento<br>da marca</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.065, y=0.30, showarrow=False, text=f'<b>{dfa.iat[5,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.24, y=0.68, xanchor='left', showarrow=False, text='<b>Negociação<br>de atletas</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.27, y=0.54, showarrow=False, text=f'<b>{dfa.iat[7,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.375, y=1.08, xanchor='left', showarrow=False, text='<b>RECEITA<br>OPERACIONAL<BR>LÍQUIDA</b>'))
+        fig.add_annotation(dict(font=dict(color="Limegreen", size=10), x=0.425, y=0.94, showarrow=False, text=f'<b>{dfa.iat[9,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.56, y=0.56, xanchor='left', showarrow=False, text='<b>DESPESAS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.6, y=0.52, showarrow=False, text=f'<b>{dfa.iat[16,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=1.03, xanchor='left', showarrow=False, text='<b>Perda<br>Oper<BR>Líquida</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.6, y=0.90, showarrow=False, text=f'<b>{dfa.iat[25,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.78, y=0.93, xanchor='left', showarrow=False, text='<b>Pessoal e<br>encargos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.82, y=0.83, showarrow=False, text=f'<b>{dfa.iat[10,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.78, y=0.78, xanchor='left', showarrow=False, text='<b>Despesas com<br>jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.83, y=0.68, showarrow=False, text=f'<b>{dfa.iat[12,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.78, y=0.58, xanchor='left', showarrow=False, text='<b>Despesas gerais<br>e administrativas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.83, y=0.50, showarrow=False, text=f'<b>{dfa.iat[13,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.78, y=0.41, xanchor='left', showarrow=False, text='<b>Depreciação<br>Amortização</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.84, y=0.30, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.78, y=0.25, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.84, y=0.18, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.475, y=1.38, xanchor='left', showarrow=False, text='<b>RESULTADO<br>OPERACIONAL</b>'))
+        fig.add_annotation(dict(font=dict(color="Limegreen", size=10), x=0.52, y=1.28, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.65, y=1.17, xanchor='left', showarrow=False, text='<b>RESULTADO<br>FINANCEIRO</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.71, y=1.08, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.92, y=1.30, xanchor='left', showarrow=False, text='<b>RESULTADO</b>'))
+        fig.add_annotation(dict(font=dict(color="Limegreen", size=10), x=0.96, y=1.25, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.79, y=1.05, xanchor='left', showarrow=False, text='<b>Outras Despesas<br>Operacionais</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.02, showarrow=False, text=f'<b>{dfa.iat[24,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.295, y=1.38, xanchor='left', showarrow=False, text='<b>VENDA DE DIREITOS<BR>LIGA FORTE</b>'))
+        fig.add_annotation(dict(font=dict(color="grey", size=10), x=0.36, y=1.28, showarrow=False, text=f'<b>{dfa.iat[23,0]}</b>'))
+
+    
+
+
+        fig.add_layout_image(
+            dict(
+                source="https://raw.githubusercontent.com/JAmerico1898/Financials/b8aa21e79bd9f585f0acd3daf3d22d6c1002c314/Cruzeiro.png",  # Change this to your image path
+                xref="paper",  # Use "paper" for relative positioning within the plot
+                yref="paper",
+                x=1,  # Bottom left corner
+                y=0,  # Bottom left corner
+                sizex=0.1,  # Size of the image in x-axis proportion of plot's width
+                sizey=0.1,  # Size of the image in y-axis proportion of plot's height
+                xanchor="right",  # Anchor point is set to the left of the image
+                yanchor="bottom"  # Anchor point is set to the bottom of the image
+            )
+        )
+
+
+        st.plotly_chart(fig)
+
+#############################################################################################################################################
+#############################################################################################################################################
+
+        markdown_1 = f"<div style='text-align:center;  color: blue; font-weight: bold; font-size:{fontsize}px'>{clube:}</div>"
+        st.markdown("<h4 style='text-align: center;  color: black;'>Demonstração de Fluxo de Caixa</b></h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: center;  color: black;'>(em R$ milhões)<br></b></h5>", unsafe_allow_html=True)
+        st.markdown(markdown_1, unsafe_allow_html=True)
+        st.markdown("---")
+
+        # Defining labels, sources and targets
+
+        source =              [0, 1, 2, 3, 5, 6, 22,  7, 8,  8,  8,  8,  8, 14, 7,  15, 20, 16, 16, 20  ] #18 sources
+        target =              [7, 7, 7, 7, 7, 7, 15,  8, 9, 10, 11, 12, 13, 8,  15, 16, 16, 17, 18, 21 ] #18 targets
+        value = df2.iloc[np.r_[0, 1, 2, 3, 5, 6, 22,  8, 9, 10, 11, 12, 13, 14, 23, 15, 23, 17, 18, 21], np.r_[8]].astype(int) #19 values
+        dfa = df2.iloc[:, np.r_[8]].astype(int)
+        link = dict(source=source, target=target, value=value, color=color_link)
+        node = dict(label = label_caixa, pad=35, thickness=20)
+        data = go.Sankey(link=link, node=node)
+
+        # Set our X and Y co-ords 
+        x = [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.30, 0.45, 0.60, 0.60, 0.60, 0.60, 0.375,  0.52,  0.65,  0.80, 0.90,   0.60, 0.90,  0.42]
+        y = [0.00, 0.22, 0.44, 0.66, 0.88, 1.10, 0.05, 0.22, 0.30, 0.47, 0.60, 0.75, 0.90, -0.15,  -0.15, -0.10, -0.20, -0.05, 0.30, -0.20]
+        x = [.001 if v==0 else .999 if v==1 else v for v in x]
+        y = [.001 if v==0 else .999 if v==1 else v for v in y]
+
+        # Node Colors
+        color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue',
+                          'steelblue', 'steelblue', 'steelblue', 'maroon', 'maroon', 'maroon', 
+                          'maroon', 'maroon', 'maroon', 'steelblue', 'limegreen', 'maroon', 'maroon',
+                          'maroon', 'maroon', 'limegreen', 'limegreen', 'gray'
+                          ]
+            
+        color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
+                          'LightSkyBlue', 'LightSkyBlue', 'darkgrey', 'indianred', 'indianred',
+                          'indianred', 'indianred', 'indianred', 'indianred', 'LightSkyBlue',
+                          'indianred', 'indianred', 'indianred', 'indianred', 'indianred',
+                          'Lime']
+
+        fig = go.Figure(data=[go.Sankey(
+                # The following line hides our labels. They still show
+                # when you hover the mouse over an object
+                textfont=dict(color="rgba(0,0,0,0)", size=1),
+                node = dict(
+                    pad = 35,
+                    line = dict(color = "white", width = 1),
+                    label = label_caixa,
+                    x = x,
+                    y = y
+                ),
+                link = dict(
+                    source = source,
+                    target = target,
+                    value = value
+                    ))])
+
+        # Update our chart
+        fig.update_layout(
+            hovermode='x',
+        )
+        # Apply node and link colour choices
+        fig.update_traces(node_color = color_for_nodes,
+                        link_color = color_for_links)
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.31, y=1.37, xanchor='left', showarrow=False, text='<b>VENDA DE DIREITOS<br>LIGA FORTE</b>'))
+        fig.add_annotation(dict(font=dict(color="grey", size=11), x=0.375, y=1.25, showarrow=False, text=f'<b>{dfa.iat[22,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.02, y=1.08, xanchor='left', showarrow=False, text='<b>Direitos de<br>transmissão e<br>Premiações</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.07, y=0.93, showarrow=False, text=f'<b>{dfa.iat[0,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.03, y=0.86, xanchor='left', showarrow=False, text='<b>Publicidade e<br>patrocínio</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.07, y=0.75, showarrow=False, text=f'<b>{dfa.iat[1,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.04, y=0.60, xanchor='left', showarrow=False, text='<b>Arrecadação<br>de jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.07, y=0.52, showarrow=False, text=f'<b>{dfa.iat[2,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.05, y=0.33, xanchor='left', showarrow=False, text='<b>Sócio<br>Torcedor</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.07, y=0.27, showarrow=False, text=f'<b>{dfa.iat[3,0]}</b>'))
+            
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.03, y=0.12, xanchor='left', showarrow=False, text='<b>Licenciamento<br>da marca</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.06, y=0.06, showarrow=False, text=f'<b>{dfa.iat[5,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=11), x=0.04, y=-0.12, xanchor='left', showarrow=False, text='<b>Negociação<br>de atletas</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=11), x=0.07, y=-0.18, showarrow=False, text=f'<b>{dfa.iat[6,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.26, y=1.20, xanchor='left', showarrow=False, text='<b>GERAÇÃO DE<br>CAIXA TOTAL</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.285, y=1.10, showarrow=False, text=f'<b>{dfa.iat[7,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.40, y=1.06, xanchor='left', showarrow=False, text='<b>SAÍDAS DE CAIXA<br>OPERACIONAIS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.45, y=0.97, showarrow=False, text=f'<b>{dfa.iat[8,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.46, y=1.36, xanchor='left', showarrow=False, text='<b>GERAÇÃO DE CAIXA<br>OPERACIONAL</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.52, y=1.27, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.63, y=0.80, xanchor='left', showarrow=False, text='<b>Pessoal e<br>encargos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.67, y=0.70, showarrow=False, text=f'<b>{dfa.iat[9,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.63, y=0.58, xanchor='left', showarrow=False, text='<b>Despesas com<br>jogos</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.68, y=0.50, showarrow=False, text=f'<b>{dfa.iat[11,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.63, y=0.41, xanchor='left', showarrow=False, text='<b>Despesas gerais<br>e administrativas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.68, y=0.31, showarrow=False, text=f'<b>{dfa.iat[12,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.63, y=0.21, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.69, y=0.16, showarrow=False, text=f'<b>{dfa.iat[13,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.22, y=0.08, xanchor='left', showarrow=False, text='<b>Ajuste nas Saídas de<br>Caixa Operacional</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.285, y=0.03, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=9), x=0.60, y=1.34, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A INVESTIMENTOS</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=9), x=0.65, y=1.25, showarrow=False, text=f'<b>{dfa.iat[16,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.82, y=1.18, xanchor='left', showarrow=False, text='<b>Compra<br>de Jogadores</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.86, y=1.08, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.92, y=1.28, xanchor='left', showarrow=False, text='<b>Compra de<br>Imobilizado</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.97, y=1.18, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.55, y=0.97, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.62, y=0.86, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
+
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.83, y=0.67, xanchor='left', showarrow=False, text='<b>AUMENTO/<br>DIMINUIÇÃO DE CAIXA</b>'))
+        fig.add_annotation(dict(font=dict(color="steelblue", size=10), x=0.91, y=0.54, showarrow=False, text=f'<b>{dfa.iat[21,0]}</b>'))
+
+        fig.add_layout_image(
+            dict(
+                source="https://raw.githubusercontent.com/JAmerico1898/Financials/b8aa21e79bd9f585f0acd3daf3d22d6c1002c314/Cruzeiro.png",  # Change this to your image path
                 xref="paper",  # Use "paper" for relative positioning within the plot
                 yref="paper",
                 x=1,  # Bottom right corner
