@@ -11395,6 +11395,15 @@ elif choose == "Análise Comparativa Bivariada":
             ax.text(0.95, 0.05, f'Pearson r={corr_coef:.2f}', transform=ax.transAxes, 
             horizontalalignment='right', verticalalignment='bottom', fontsize=12)
 
+            # Calculate R-squared value
+            residuals = result_y - fit_line
+            ss_res = np.sum(residuals**2)
+            ss_tot = np.sum((result_y - np.mean(result_y))**2)
+            r_squared = 1 - (ss_res / ss_tot)
+
+            ax.text(0.95, 0.10, f'R-squared={r_squared:.2f}', transform=ax.transAxes,
+                    horizontalalignment='right', verticalalignment='bottom', fontsize=12)
+
             # Dynamically adjust y-axis limits based on data
             y_min, y_max = min(result_y), max(result_y)
             if y_max <= 1:  # Check if the data is in the range 0 to 1
