@@ -1,0 +1,121 @@
+Clubs,Date,DFs Disponíveis,General Framework,General Framework.1,General Framework.2,General Framework.3,General Framework.4,General Framework.5,General Framework.6,General Framework.7,General Framework.8,Additional Reports,Additional Reports.1,Additional Reports.2,Additional Reports.3,Additional Reports.4,Additional Reports.5,Additional Reports.6,Additional Reports.7,Additional Reports.8,Additional Reports.9,Additional Reports.10,Additional Reports.11,Tests and Indicators,Tests and Indicators.1,Tests and Indicators.2,Tests and Indicators.3,Tests and Indicators.4,Tests and Indicators.5,Tests and Indicators.6,Transparency Indicator,Turnover,Position,Series,CBF
+,,,Level 1,Level 1,Level 1,Level 1,Level 1,Level 1,Level 1,Level 1,Level 1,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 2,Level 3,Level 3,Level 3,Level 3,Level 3,Level 3,Level 3,,,,,
+,,,"Publicou relatório da auditoria independente sobre o balanço anual?
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Publicou provisão para contingências cuja perda é ""possível""?
+
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou receitas? Em direitos de transmissão, patrocínios/marketing, bilheterias, associações e transferências de atletas, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou despesas? Em folha de pessoal, direitos de imagem e administrativas, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto
+","Detalhou o resultado financeiro? Em juros sobre dívidas e variação cambial, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou receitas e despesas de futebol entre profissional e base?
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou (no intangível) investimentos feitos em aquisição e formação de atletas, assim como atletas formados? Em valores.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Publicou todas as DFs obrigatórias?
+- BP, DRE, DRA, DMPL, DFC, NE
+
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto",Total,"Detalhou receitas e despesas de acordo com linhas de negócio? Entre futebol, clube social e esportes olímpicos/amadores.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou dividas com instituições financeiras? Em taxas de juros, garantias oferecidas e nome da IF, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou contas a receber e pagar para intermediários? Em valores e prazos para pagamento, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou contas a receber e pagar por transferências de atletas? Em valores e prazos para pagamento, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Publicou balancetes trimestrais ou mensais no exercício anterior?
+Valor:
+- Mensais, 1 ponto
+- Trimestrais, 0,5 ponto
+- Otherwise, 0 ponto","Publicou orçamento para o exercício seguinte?
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou receitas de transmissão por competição?
+- Brasileiro
+- Copa do Brasil
+- Estadual
+- Internacional
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou receitas de transmissão por tipo?
+- TV Aberta e Fechada
+- PPV
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhamento da receita de premiação.
+Valor:
+- Segregou a receita de premiação e detalhou por competição, 1 ponto
+- Segregou a receita de premiação, 0,5 ponto
+- Não, 0 ponto","Detalhou dívidas com terceiros? Em taxas de juros, prazos para pagamento e garantias oferecidas, no mínimo.
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Detalhou a participação no % de direitos federativos de atletas?
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto",Total,"Publicou a DVA?
+
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Auditoria externa fez ressalvas em relação ao balanço anual?
+
+Valor:
+- Sim, 0 ponto
+- Abstenção de opinião, 0,5 ponto
+- Não, 1 ponto","Alterou o resultado líquido do ano anterior em reapresentação?
+
+Valor:
+- Sim, 0 ponto
+- Não, 1 ponto","Publica parecer do Conselho Fiscal sobre as DFs?
+
+
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Incluiu relatório no balanço para facilitar entendimento do leigo?
+
+Valor:
+- Sim, 1 ponto
+- Não, 0 ponto","Divulgação de KPIs:
+1. Non-financial:
+- Ticket sales versus capacity
+2. Financial
+- Custo Futebol Profissional / Turnover
+- Lucro Operacional / EBITDA, before player trading
+- Player Trading (acquisition/sales)
+
+Valor:
+- No mínimo 2 KPIs, 1 ponto
+- 1 KPI, 0,5 ponto
+- Otherwise, 0 ponto",Total,,Turnover,,,
+America Mineiro,2023.0,,1,0,1,1,1,0,1,1,6,0,1,0,0,0,0,0,0,0,0,1,2,0,1,1,0,0,0,2,10.0,,,,
+Athletico Paranaense,2023.0,,1,1,1,1,1,0,1,1,7,1,1,0,0,0,0,0,0,0.5,1,0,3.5,0,1,1,0,1,1,4,14.5,,,,
+Atlético Mineiro,2023.0,,1,0,1,1,1,0,1,1,6,1,1,0,0,0,0,0,0,0,0,0,2,0,1,1,0,0,0,2,10.0,,,,
+Coritiba,2023.0,,1,1,1,1,1,1,1,1,8,1,1,0,0,0,0,0,0,0,0,0,2,0,1,1,0,0,0,2,12.0,,,,
+Flamengo,2023.0,,1,1,1,1,1,0,1,1,7,0,1,0,1,0.5,1,0,0,0.5,1,0,5,0,1,1,1,1,1,5,17.0,,,,
+Fluminense,2023.0,,1,1,1,1,1,0,1,1,7,1,1,0,1,0.5,0,1,1,1,1,0,7.5,0,0,1,0,0,0,1,15.5,,,,
+Goiás,2023.0,,1,1,1,1,1,0,1,1,7,0,1,0,0,1,0,0,0,0.5,1,1,4.5,0,1,1,0,0,0,2,13.5,,,,
+Grêmio,2023.0,,1,0,1,1,1,0,1,1,6,0,1,0,0,0.5,1,1,0,0,1,0,4.5,0,1,1,1,0,0,3,13.5,,,,
+Internacional,2023.0,,1,1,1,1,1,0,1,1,7,0,1,0,0,0,0,0,0,0.5,1,0,2.5,0,1,1,0,1,1,4,13.5,,,,
+São Paulo,2023.0,,1,1,1,1,0,0,1,1,6,1,1,1,1,0,0,0,0,0,1,1,6,1,1,1,1,1,1,6,18.0,,,,
+Vasco da Gama,2023.0,,1,1,1,1,1,0,1,1,7,1,1,0,0,0,0,0,0,0.5,1,0,3.5,0,1,1,1,1,1,5,15.5,,,,
+Palmeiras,2023.0,,1,1,1,1,1,1,1,1,8,1,1,0,1,0,0,1,0,1,1,1,7,0,1,1,1,1,1,5,20.0,,,,
+Santos,2023.0,,1,1,1,1,0,1,1,1,7,1,1,1,1,0,1,0,0,0,1,1,7,1,1,1,0,0,0,3,17.0,,,,
+Cuiabá,2023.0,,1,1,0,0,0,0,0,1,3,1,1,0,0,0,0,0,0,0,1,0,3,0,0,1,0,0,0,1,7.0,,,,
+Corinthians,2023.0,,1,1,1,0,1,0,0,1,5,,1,1,1,0,0,0,0,0.5,1,1,5.5,1,1,1,0,0,0,3,13.5,,,,
+Bahia,2023.0,,1,1,1,0,1,0,0,1,5,1,1,0,0,0,0,0,0,0,1,0,3,0,1,1,0,0,0,2,10.0,,,,
