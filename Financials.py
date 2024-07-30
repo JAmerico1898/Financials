@@ -2193,14 +2193,14 @@ if choose == "Análise Individual - 2023":
         # Node Colors
         color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 
                           'steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 'maroon', 
-                          'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon','maroon',
-                          'maroon', 'maroon', 'grey', 'maroon', 'grey']
+                          'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon',
+                          'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'grey', 'maroon', 'maroon']
             
         color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
                           'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
                           'LightSkyBlue', 'indianred', 'indianred',
                           'indianred', 'indianred', 'indianred', 'indianred', 'indianred',
-                          'indianred', 'darkgrey', 'darkgrey', 'indianred', 'indianred']
+                          'indianred', 'darkgrey', 'indianred', 'indianred', 'indianred']
 
         fig = go.Figure(data=[go.Sankey(
                 # The following line hides our labels. They still show
@@ -2282,7 +2282,7 @@ if choose == "Análise Individual - 2023":
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.795, y=0.10, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
 
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.60, y=1.39, xanchor='left', showarrow=False, text='<b>RESULTADO<br>OPERACIONAL</b>'))
-        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.65, y=1.30, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.65, y=1.30, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
 
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.80, y=1.34, xanchor='left', showarrow=False, text='<b>RESULTADO<br>FINANCEIRO</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.85, y=1.25, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
@@ -2290,8 +2290,8 @@ if choose == "Análise Individual - 2023":
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.88, y=1.16, xanchor='left', showarrow=False, text='<b>RESULTADO</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.11, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.54, y=0.98, xanchor='left', showarrow=False, text='<b>Outras Receitas<br>Operacionais</b>'))
-        fig.add_annotation(dict(font=dict(color="grey", size=10), x=0.595, y=0.89, showarrow=False, text=f'<b>{dfa.iat[24,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.54, y=0.98, xanchor='left', showarrow=False, text='<b>Outras Despesas<br>Operacionais</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.595, y=0.89, showarrow=False, text=f'<b>{dfa.iat[24,0]}</b>'))
 
         fig.add_layout_image(
             dict(
@@ -2431,14 +2431,14 @@ if choose == "Análise Individual - 2023":
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.91, y=0.90, xanchor='left', showarrow=False, text='<b>Compra de<br>Imobilizado</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.96, y=0.81, showarrow=False, text=f'<b>{dfa.iat[18,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.52, y=0.90, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS</b>'))
-        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.58, y=0.81, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.52, y=0.90, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS<br>(Empréstimos 358M)</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.59, y=0.75, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
 
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.85, y=0.28, xanchor='left', showarrow=False, text='<b>AUMENTO<br>DE CAIXA</b>'))
         fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.90, y=0.18, showarrow=False, text=f'<b>{dfa.iat[21,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.85, y=0.58, xanchor='left', showarrow=False, text='<b>Mútuo c/ Partes<br>Relacionadas</b>'))
-        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.89, y=0.48, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.83, y=0.56, xanchor='left', showarrow=False, text='<b>Mútuo c/ Partes<br>Relacionadas<br>(369M)</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.89, y=0.46, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
 
         fig.add_layout_image(
             dict(
@@ -2932,7 +2932,7 @@ if choose == "Análise Individual - 2023":
         color_for_nodes =['steelblue', 'steelblue', 'steelblue', 'steelblue', 'steelblue', 
                           'steelblue', 'steelblue', 'steelblue', 'steelblue', 'limegreen', 'maroon', 
                           'maroon', 'maroon', 'maroon', 'maroon', 'maroon', 'maroon',
-                          'limegreen', 'maroon', 'limegreen', 'grey', 'grey', 'grey']
+                          'limegreen', 'maroon', 'limegreen', 'grey', 'grey', 'grey', 'grey', 'grey']
             
         color_for_links =['LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
                           'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue', 'LightSkyBlue',
@@ -3016,7 +3016,7 @@ if choose == "Análise Individual - 2023":
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.35, xanchor='left', showarrow=False, text='<b>Depreciação<br>amortização</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.78, y=0.25, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.16, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.73, y=0.15, xanchor='left', showarrow=False, text='<b>Outras despesas<br>Premiações(61M)</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.795, y=0.10, showarrow=False, text=f'<b>{dfa.iat[15,0]}</b>'))
 
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.50, y=1.39, xanchor='left', showarrow=False, text='<b>RESULTADO<br>OPERACIONAL</b>'))
@@ -3064,8 +3064,8 @@ if choose == "Análise Individual - 2023":
         data = go.Sankey(link=link, node=node)
 
         # Set our X and Y co-ords 
-        x = [0.15, 0.15, 0.15, 0.15, 0.15,   0.15, 0.15, 0.30, 0.43, 0.55, 0.55, 0.55, 0.55,  0.55,  0.55,  0.60,  0.78, 0.87, 0.87,  0.87, 0.75,  0.80, 0.45 ]
-        y = [-0.22, -0.00, 0.22, 0.44, 0.66, 0.88, 1.08, 0.05, 0.42,  0.45, 0.60, 0.75, 0.90,  1.05,  1.20, -0.05, -0.10, -0.15, -0.05, 0.10, 0.60, 0.45, -0.15]
+        x = [0.15, 0.15, 0.15, 0.15, 0.15,   0.15, 0.15, 0.30, 0.43, 0.55, 0.55, 0.55, 0.55,  0.55,  0.55,  0.60,  0.78, 0.85, 0.85,  0.73, 0.83,  0.50, 0.45 ]
+        y = [-0.22, -0.00, 0.22, 0.44, 0.66, 0.88, 1.08, 0.05, 0.42,  0.45, 0.60, 0.75, 0.90,  1.05,  1.20, -0.05, -0.10, -0.15, -0.05, 0.30, 0.20, -0.20, -0.15]
         x = [.001 if v==0 else .999 if v==1 else v for v in x]
         y = [.001 if v==0 else .999 if v==1 else v for v in y]
 
@@ -3154,23 +3154,23 @@ if choose == "Análise Individual - 2023":
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=-0.07, xanchor='left', showarrow=False, text='<b>Outras despesas</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.62, y=-0.12, showarrow=False, text=f'<b>{dfa.iat[13,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=-0.23, xanchor='left', showarrow=False, text='<b>Ajuste na Geração de<br>Caixa Operacional</b>'))
-        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.62, y=-0.28, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.57, y=-0.26, xanchor='left', showarrow=False, text='<b>Ajuste na Geração de<br>Caixa Operacional<br>Premiações(61M)</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.63, y=-0.31, showarrow=False, text=f'<b>{dfa.iat[14,0]}</b>'))
 
         fig.add_annotation(dict(font=dict(color="black", size=10), x=0.725, y=1.32, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A INVESTIMENTOS</b>'))
         fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.795, y=1.22, showarrow=False, text=f'<b>{dfa.iat[16,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.87, y=1.25, xanchor='left', showarrow=False, text='<b>Compra<br>de Jogadores</b>'))
-        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.14, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.87, y=1.30, xanchor='left', showarrow=False, text='<b>Compra<br>de Jogadores</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.19, showarrow=False, text=f'<b>{dfa.iat[17,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.87, y=1.00, xanchor='left', showarrow=False, text='<b>Investimento<br>na Base</b>'))
-        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=0.90, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.87, y=1.12, xanchor='left', showarrow=False, text='<b>Investimento<br>na Base</b>'))
+        fig.add_annotation(dict(font=dict(color="indianred", size=10), x=0.93, y=1.01, showarrow=False, text=f'<b>{dfa.iat[19,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.725, y=0.24, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS</b>'))
-        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.795, y=0.19, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.86, y=0.87, xanchor='left', showarrow=False, text='<b>AUMENTO/<br>DIMINUIÇÃO DE CAIXA</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.93, y=0.76, showarrow=False, text=f'<b>{dfa.iat[21,0]}</b>'))
 
-        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.82, y=0.58, xanchor='left', showarrow=False, text='<b>AUMENTO/<br>DIMINUIÇÃO DE CAIXA</b>'))
-        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.89, y=0.51, showarrow=False, text=f'<b>{dfa.iat[21,0]}</b>'))
+        fig.add_annotation(dict(font=dict(color="black", size=10), x=0.66, y=0.60, xanchor='left', showarrow=False, text='<b>CAIXA DESTINADO<br>A FINANCIAMENTOS</b>'))
+        fig.add_annotation(dict(font=dict(color="limegreen", size=10), x=0.74, y=0.53, showarrow=False, text=f'<b>{dfa.iat[20,0]}</b>'))
 
         fig.add_layout_image(
             dict(
@@ -9156,7 +9156,7 @@ elif choose == "Análise Comparativa Univariada":
 
         # Adding titles and labels
         #ax.set_xlabel('Anos', fontsize=14, fontweight='bold')
-        ax.set_ylabel(f'{tema_cont} (R$ milhões)', fontsize=14, fontweight='bold')
+        ax.set_ylabel(f'{tema_esport} (R$ milhões)', fontsize=14, fontweight='bold')
         ax.tick_params(axis='y', labelsize=12)
         ax.tick_params(axis='x', labelsize=12)
         ax.spines['right'].set_visible(False)
@@ -9289,7 +9289,7 @@ elif choose == "Análise Comparativa Univariada":
 
         # Adding titles and labels
         #ax.set_xlabel('Anos', fontsize=14, fontweight='bold')
-        ax.set_ylabel(f'{tema_cont} (R$ milhões)', fontsize=14, fontweight='bold')
+        ax.set_ylabel(f'{tema_esport} (R$ milhões)', fontsize=14, fontweight='bold')
         ax.tick_params(axis='y', labelsize=12)
         ax.tick_params(axis='x', labelsize=12)
         ax.spines['right'].set_visible(False)
@@ -9422,7 +9422,7 @@ elif choose == "Análise Comparativa Univariada":
 
         # Adding titles and labels
         #ax.set_xlabel('Anos', fontsize=14, fontweight='bold')
-        ax.set_ylabel(f'{tema_cont} (R$ milhões)', fontsize=14, fontweight='bold')
+        ax.set_ylabel(f'{tema_esport} (R$ milhões)', fontsize=14, fontweight='bold')
         ax.tick_params(axis='y', labelsize=12)
         ax.tick_params(axis='x', labelsize=12)
         ax.spines['right'].set_visible(False)
