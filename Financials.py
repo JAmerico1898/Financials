@@ -357,16 +357,24 @@ if st.session_state.selected_option == "Compare 2 clubes!":
     </style>
     """, unsafe_allow_html=True)
 
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Compare 2 Clubes:</h4>
-    <p>Confronta dois clubes de sua escolha através de um gráfico radar intuitivo. 
-    Esta visualização apresenta simultaneamente as principais receitas e despesas financeiras, onde
-    cada clube é representado por uma cor distinta, facilitando a identificação rápida de áreas 
-    onde um clube supera o outro, além de revelar os diferentes perfis de geração de receita e 
-    estrutura de gastos.</p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Compare 2 Clubes:</h4>
+        <p>Confronta dois clubes de sua escolha através de um gráfico radar intuitivo. 
+        Esta visualização apresenta simultaneamente as principais receitas e despesas financeiras, onde
+        cada clube é representado por uma cor distinta, facilitando a identificação rápida de áreas 
+        onde um clube supera o outro, além de revelar os diferentes perfis de geração de receita e 
+        estrutura de gastos.</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     st.write("---")
     
@@ -570,23 +578,31 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         }
     </style>
     """, unsafe_allow_html=True)
-
+    
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Análise Individual - 2024:</h4>
-    <p>Esta análise de resultados oferece uma visão abrangente da Demonstração de Resultados do clube 
-    selecionado por meio de um diagrama de Sankey. Permite entender rapidamente a estrutura financeira 
-    do clube e como os recursos fluem desde as fontes de receita (como direitos de transmissão e negociação de atletas) 
-    até as diferentes categorias de despesas (como a folha de futebol (pessoal + direitos de imagem), 
-    culminando no resultado financeiro final. </p>
-    <p>A apresentação dos dados é ligeiramente diferente da apresentação formal dos clubes. Aqui, optei por apresentar a
-    totalidade das receitas, exceto a financeira, antes da dedução das despesas. Dessa forma, o usuário tem a noção da 
-    RECEITA OPERACIONAL total do clube, depois dos impostos. </p>
-    <p>Além disso, são apresentados dois gráficos radar: o primeiro compara as pricipais receitas e despesas do clube
-    com a média da liga; e o segundo com as mesmas receitas e despesas de 2023 (não ajustadas pela inflação). </p>  
-    <p><b>Nota:</b> Utiliza apenas dados das demonstrações financeiras auditadas.</p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Análise Individual - 2024:</h4>
+        <p>Esta análise de resultados oferece uma visão abrangente da Demonstração de Resultados do clube 
+        selecionado por meio de um diagrama de Sankey. Permite entender rapidamente a estrutura financeira 
+        do clube e como os recursos fluem desde as fontes de receita (como direitos de transmissão e negociação de atletas) 
+        até as diferentes categorias de despesas (como a folha de futebol (pessoal + direitos de imagem), 
+        culminando no resultado financeiro final. </p>
+        <p>A apresentação dos dados é ligeiramente diferente da apresentação formal dos clubes. Aqui, optei por apresentar a
+        totalidade das receitas, exceto a financeira, antes da dedução das despesas. Dessa forma, o usuário tem a noção da 
+        RECEITA OPERACIONAL total do clube, depois dos impostos. </p>
+        <p>Além disso, são apresentados dois gráficos radar: o primeiro compara as pricipais receitas e despesas do clube
+        com a média da liga; e o segundo com as mesmas receitas e despesas de 2023 (não ajustadas pela inflação). </p>  
+        <p><b>Nota:</b> Utiliza apenas dados das demonstrações financeiras auditadas.</p>
+        </div>
+        """, unsafe_allow_html=True)
     st.write("---")
     
     st.markdown("<h5 style='text-align: center; color: black;'>Escolha o Clube</b></h5>", unsafe_allow_html=True)
@@ -8298,18 +8314,26 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
     </style>
     """, unsafe_allow_html=True)
 
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Análise Comparativa Simples:</h4>
-    <p>A Análise Comparativa Simples oferece duas visualizações complementares para a análise financeira dos clubes da Série A. 
-    Na primeira, você pode comparar o desempenho de todos os clubes em um indicador específico (Contábil, Esportivo, Gerencial) 
-    para o ano de 2024, visualizando de forma clara a posição relativa de cada clube.</p>
-    <p>Na segunda visualização, é apresentada a evolução de um clube específico (em destaque) ao longo de cinco anos (2020-2024) 
-    em comparação com todos os demais clubes (representados pelas linhas tracejadas em segundo plano). Esta visualização temporal 
-    permite identificar tendências, oscilações e o posicionamento do clube selecionado em relação ao mercado, facilitando a 
-    compreensão do desenvolvimento financeiro no contexto competitivo do futebol brasileiro.</p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Análise Comparativa Simples:</h4>
+        <p>A Análise Comparativa Simples oferece duas visualizações complementares para a análise financeira dos clubes da Série A. 
+        Na primeira, você pode comparar o desempenho de todos os clubes em um indicador específico (Contábil, Esportivo, Gerencial) 
+        para o ano de 2024, visualizando de forma clara a posição relativa de cada clube.</p>
+        <p>Na segunda visualização, é apresentada a evolução de um clube específico (em destaque) ao longo de cinco anos (2020-2024) 
+        em comparação com todos os demais clubes (representados pelas linhas tracejadas em segundo plano). Esta visualização temporal 
+        permite identificar tendências, oscilações e o posicionamento do clube selecionado em relação ao mercado, facilitando a 
+        compreensão do desenvolvimento financeiro no contexto competitivo do futebol brasileiro.</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<h5 style='text-align: center; color: black;'>Escolha o Clube para destacar</b></h5>", unsafe_allow_html=True)
     highlight = st.selectbox("", options=clubes, index=None, placeholder="Escolha o Clube!")
@@ -16351,18 +16375,26 @@ elif st.session_state.selected_option == "Análise Conjunta":
     </style>
     """, unsafe_allow_html=True)
 
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Análise Conjunta:</h4>
-    <p>A Análise Conjunta permite explorar a relação entre duas variáveis de interesse 
-    (financeiras, esportivas ou gerenciais) através de um gráfico de dispersão interativo. 
-    A visualização inclui uma linha de regressão que indica a tendência geral da relação, 
-    complementada pelos indicadores estatísticos R-squared e coeficiente de correlação de Pearson, 
-    que quantificam a força dessa relação. Esta ferramenta possibilita identificar padrões, 
-    como verificar se clubes com maiores receitas de transmissão tendem a obter melhores pontuações no campeonato, 
-    ou detectar clubes que apresentam desempenho acima ou abaixo do esperado considerando os recursos disponíveis.</p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Análise Conjunta:</h4>
+        <p>A Análise Conjunta permite explorar a relação entre duas variáveis de interesse 
+        (financeiras, esportivas ou gerenciais) através de um gráfico de dispersão interativo. 
+        A visualização inclui uma linha de regressão que indica a tendência geral da relação, 
+        complementada pelos indicadores estatísticos R-squared e coeficiente de correlação de Pearson, 
+        que quantificam a força dessa relação. Esta ferramenta possibilita identificar padrões, 
+        como verificar se clubes com maiores receitas de transmissão tendem a obter melhores pontuações no campeonato, 
+        ou detectar clubes que apresentam desempenho acima ou abaixo do esperado considerando os recursos disponíveis.</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     st.write("---")
 
@@ -16630,16 +16662,24 @@ if st.session_state.selected_option == "Análise Individual - Histórica":
     </style>
     """, unsafe_allow_html=True)
 
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Análise Individual - Histórica:</h4>
-    <p>Esta análise compara as principais receitas e despesas do clube, além de outros indicadores, ao longo de cinco anos (2020-2024). 
-    Cada cor representa um ano diferente, permitindo identificar rapidamente tendências de crescimento ou queda em cada 
-    categoria ao longo do tempo. Esta ferramenta auxilia na compreensão da evolução da estrutura financeira do clube, 
-    destacando mudanças estratégicas na geração de receitas e possibilitando uma análise da sustentabilidade financeira a médio prazo.</p>
-    <p>Os dados estão corrigidos pela inflação (IPCA). </p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Análise Individual - Histórica:</h4>
+        <p>Esta análise compara as principais receitas e despesas do clube, além de outros indicadores, ao longo de cinco anos (2020-2024). 
+        Cada cor representa um ano diferente, permitindo identificar rapidamente tendências de crescimento ou queda em cada 
+        categoria ao longo do tempo. Esta ferramenta auxilia na compreensão da evolução da estrutura financeira do clube, 
+        destacando mudanças estratégicas na geração de receitas e possibilitando uma análise da sustentabilidade financeira a médio prazo.</p>
+        <p>Os dados estão corrigidos pela inflação (IPCA). </p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("<h5 style='text-align: center; color: black;'>Escolha o Clube</b></h5>", unsafe_allow_html=True)
     clube = st.selectbox("", options=clubes, index=None, placeholder="Escolha o Clube!")
@@ -21488,19 +21528,27 @@ elif st.session_state.selected_option == "Índice de Transparência":
     </style>
     """, unsafe_allow_html=True)
 
+    # Custom styled title
     st.markdown("""
-    <div class="info-box">
-    <h4>Índice de Transparência:</h4>
-    <p>O Índice de Transparência das Demonstrações Financeiras oferece uma avaliação objetiva da qualidade 
-    e abrangência dos relatórios financeiros publicados pelos clubes brasileiros. Baseado em metodologia acadêmica, 
-    o índice analisa três níveis distintos: Reportes Obrigatórios (exigidos por lei), 
-    Reportes Discricionários (informações voluntárias) e Indicadores de Qualidade (aspectos que elevam a utilidade das informações). 
-    O resultado é apresentado em um gráfico de barras empilhadas que permite visualizar a pontuação total de cada clube 
-    e a contribuição de cada nível para essa pontuação, além de uma tabela detalhada com os valores específicos. 
-    Esta ferramenta possibilita comparar objetivamente as práticas de transparência financeira entre os clubes, 
-    incentivando melhores padrões de governança no futebol brasileiro.</p>
-    </div>
+    <h5 style='font-size: 20px; font-weight: bold; font-family: Arial, sans-serif; color: #1E3A8A; margin-bottom: 10px;'>
+    ℹ️ Sobre esta análise
+    </h5>
     """, unsafe_allow_html=True)
+
+    with st.expander("ℹ️ Clique para expandir", expanded=False):
+        st.markdown("""
+        <div class="info-box">
+        <h4>Índice de Transparência:</h4>
+        <p>O Índice de Transparência das Demonstrações Financeiras oferece uma avaliação objetiva da qualidade 
+        e abrangência dos relatórios financeiros publicados pelos clubes brasileiros. Baseado em metodologia acadêmica, 
+        o índice analisa três níveis distintos: Reportes Obrigatórios (exigidos por lei), 
+        Reportes Discricionários (informações voluntárias) e Indicadores de Qualidade (aspectos que elevam a utilidade das informações). 
+        O resultado é apresentado em um gráfico de barras empilhadas que permite visualizar a pontuação total de cada clube 
+        e a contribuição de cada nível para essa pontuação, além de uma tabela detalhada com os valores específicos. 
+        Esta ferramenta possibilita comparar objetivamente as práticas de transparência financeira entre os clubes, 
+        incentivando melhores padrões de governança no futebol brasileiro.</p>
+        </div>
+        """, unsafe_allow_html=True)
     
     st.write("---")
 
