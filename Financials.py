@@ -1049,11 +1049,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -1520,11 +1520,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -1966,11 +1966,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -2415,11 +2415,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -2866,11 +2866,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -3350,11 +3350,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -3798,11 +3798,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -4245,11 +4245,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -5350,11 +5350,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -5802,11 +5802,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -6253,11 +6253,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -7371,11 +7371,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -7808,11 +7808,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -8257,11 +8257,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas/2024",
+            title_name = "Receitas/Despesas-2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas/2023',
+            title_name_2 = 'Receitas/Despesas-2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
