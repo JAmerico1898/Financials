@@ -64,7 +64,7 @@ club_image_paths = {
               'Internacional': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Internacional.png',
               'Juventude': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Juventude.png',  
               'Palmeiras': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Palmeiras.png',
-              'Red Bull': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Red%20Bull%20Bragantino.png', 
+              'Red Bull Bragantino': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Red%20Bull%20Bragantino.png', 
               'São Paulo': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/S%C3%A3o%20Paulo.png',
               'SaoPaulo': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/SaoPaulo.png',
               'Vasco': 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/1cfddd572c20dd697421c1703bcb8e2ed7c8a7be/Vasco.png',
@@ -672,7 +672,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         impulsionado pelo recorde de R$ 440 mi em vendas de atletas e crescimento de 41 % na receita 
         bruta para R$ 1,27 bi. O fluxo de caixa operacional subiu para R$ 383 mi, sustentando investimentos 
         de R$ 296 mi em CAPEX e elenco. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Transações de atletas catapultaram as receitas: +135% a/a, correspondendo a 35 % da Receita total. </p>
         <p>2. Folha salarial (salários + imagens) consumiu 39,6 % da receita – patamar confortável (< 50 %) para clubes brasileiros. </p>
         <p>3. 97 % do consumo de caixa destinado a investimentos referem‑se a aquisição de atletas (R$ 185 mi) e benfeitorias do estádio. </p>
@@ -1049,11 +1049,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -1140,7 +1140,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>O Flamengo encerrou 2024 ainda como o clube de maior faturamento do país, sustentado por receitas recorrentes 
         robustas e crescente diversificação comercial. Contudo, o exercício expôs desgaste de margens e pressão de caixa 
         decorrentes de um ciclo de investimento agressivo em ativos esportivos e infraestrutura. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Receita operacional caiu 7 % e fechou em R$ 1,334 bi. </p>
         <p>2. As receitas recorrentes (sem venda de atletas) seguiram firmes e atingiram R$ 1,227 bi – +14 % a/a 
         e > R$ 1 bi pelo 3.º ano seguido. </p>
@@ -1520,11 +1520,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -1611,7 +1611,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         saltou para R$ 2,47 bi, superando o ativo em R$ 425 mi e agravando a posição de patrimônio líquido negativo. 
         A dívida bancária praticamente triplicou no ano, enquanto o caixa continuou muito baixo (R$ 12,7 mi). O auditor 
         emitiu opinião com ressalva e salientou incerteza relevante sobre a continuidade operacional do clube. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. A Receita bruta (R$ 1,05 bi) foi impulsionada por TV (29%), patrocínios (24%) e bilheteria (9%). </p>
         <p>2. Dentre as Despesas operacionais de R$ 759 mi, a folha do futebol (R$ 368 mi) é o maior componente. </p>
         <p>3. Provisões (-R$ 112 mi) e despesas financeiras (-R$ 169 mi) alimentaram o déficit de -R$ 182 mi. </p>
@@ -1966,11 +1966,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -2054,7 +2054,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>Em 2024 o Athletico registrou superávit de R$ 23,4 milhões, mas a receita operacional líquida encolheu 46 % (R$ 261 milhões) 
         por não repetir as grandes vendas de atletas de 2023. O clube manteve forte geração de caixa operacional (R$ 113,5 milhões) 
         e destinou R$ 132,5 milhões a investimentos – sobretudo novas contratações (R$ 102 milhões) e obras na Ligga Arena (R$ 29 milhões). </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Receita dependente de atletas & match-day: com queda forte em 2024, diversificação digital (Rede Furacão) precisa ganhar 
         escala para estabilizar fluxos. </p>
         <p>2. O rebaixamento impedirá a participação plena nos direitos de TV negociados pela LFU, que implicaria aumento considerável de receita. </p>
@@ -2415,11 +2415,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -2505,7 +2505,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         manteve geração de caixa operacional de R$ 150 milhões, mas registrou déficit contábil de R$ 34,5 milhões.
         O clube planeja em 2025 reduzir custos operacionais em 8,5% e obter superávit, apoiado por 
         expansão do quadro social, performance esportiva e gestão do passivo fiscal. ​</p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Os custos operacionais atingiram R$ 404 milhões, impulsionados pela folha (+18%) e direitos de imagem (100%). </p>
         <p>2. Resultado financeiro (-R$ 64 milhões) revela juros elevados sobre dívidas e variação cambial. </p>
         <p>3. Forte investimento em atletas (R$ 197 milhões) consumiu a Geração de Caixa Operacional (R$ 150 milhões) . </p>
@@ -2866,11 +2866,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -2990,7 +2990,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <h4>Resumo:</h4>
         <p>Em 2024, o Fortaleza concluiu a migração para uma SAF, manteve a receita líquida praticamente estável em R$ 231,5 mi, 
         mas fechou o ano com déficit de R$ 80,3 mi. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. O Fortaleza foi dos poucos clubes que apresentou redução de receita (-5%) devido à queda na venda de jogadores (-100%). </p>
         <p>2. Os custos do futebol pressionaram as despesas. A folha do futebol aumentou 25%; a amortização de direitos de atletas
         outros 40%, pressionando os custos. </p>
@@ -3350,11 +3350,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -3440,7 +3440,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <h4>Resumo:</h4>
         <p>O Fluminense encerrou 2024 com receitas totais de (R$ 661 mi, +46% vs. 2023), impulsionada pela venda 
         de jogadores (R$ 268 mi ante R$ 16 mi em 2023), registrando resultado zero. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Elevada dependência de receitas não recorrentes (transferências de atletas) expõe o clube à 
         volatilidade de mercado. </p>
         <p>2. Não foi lançada a reversão de metade da Receita antecipada em 2023 referente à venda de 20% dos 
@@ -3798,11 +3798,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -4245,11 +4245,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -4973,7 +4973,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <div class="info-box">
         <h4>Resumo:</h4>
         <p>Em 2024 o Grêmio reverteu o déficit de R$ 28 mi de 2023 para superávit de R$ 44 mi, amparado no aumento de 22,5% da Receita Total para R$ 593 mi.  </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. O aumento da Receita é explicado pela venda de jogadores, R$ 106 mi, e pelo ganho de valor justo na compra de créditos da Arena, R$ 89 mi.  
         <p>2. A Geração de Caixa Operacional, R$ 122 mi, dobrou em relação a 2023, e foi inteiramente consumida pela compra de jogadores, R$ 130 mi. </p>
         <p>3. O Custo Operacional, R$ 398 mi, aumentou 10%, e corresponde a 67% da Receita Líquida. </p>  
@@ -5350,11 +5350,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -5439,7 +5439,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>Em 2024, o Atlético alcançou a maior receita de sua história, totalizando R$627 milhões (depois dos impostos). Contudo, o clube registrou
         apesar do prejuízo líquido de R$299 milhões, fortemente impactado pelo resultado financeiro negativo de R$219 milhões. A dívida expandida 
         aumentou para R$2,1 bilhão. O investimento no futebol somou R$542 milhões, incluindo folha salarial recorde e aquisições de atletas. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Valor total de ativos: Avaliado em R$2,3 bilhões, incluindo a Arena MRV (R$1,3 bi) e Cidade do Galo (R$200 mi). </p>
         <p>2. Dívida com bancos e Arena MRV: R$953 milhões ao final de 2024. </p>
         <p>3. Receita com venda de atletas: R$183 milhões (maior da história do clube). </p>
@@ -5802,11 +5802,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -5891,7 +5891,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>O Bahia vive um ciclo de crescimento acelerado financiado essencialmente pelo City Football Group (CFG).
         O plano financeiro depende da liquidez provida pelo CFG enquanto os investimentos em elenco se convertem 
         (no médio prazo) em performance esportiva, novas receitas e reversão do déficit patrimonial. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Explosão dos custos do futebol: a rubrica Custo de pessoal/negociações saltou para R$ 391 mi 
         (143 % acima de 2023), levando o custo das atividades a superar a receita em 63 %. 
         A relação salários / receita = 1,07 é muito acima do limite prudencial (< 0,7). </p>
@@ -6253,11 +6253,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -6342,7 +6342,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>O Juventude registrou um crescimento robusto de receitas (R$138 mi) sustentado por TV/premiações (68 %) 
         e patrocínios (19 %), consequência do retorno à Série A. O superávit de R$ 34 mi, um dos poucos da Série A,
         indicam boa eficiência em 2024. O auditor ressalvou o balanço devido a inconsistências em parcelamento do FGTS. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. Folha salarial e encargos representam 60 % de todas as despesas, principal custo. </p>
         <p>2. Negócios com atletas foram discretos em 2024 (apenas 3 % da receita), limitando a 
         Receita total do clube. </p>
@@ -6664,11 +6664,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <h4>Resumo:</h4>
         <p>O Vitória registrou um salto de receitas. A volta à Série A elevou cotas de TV, patrocínios e bilheteria. Entretanto, as 
         despesas cresceram em ritmo semelhante, impedindo a reversão do déficit. </p>
-            <h5>Destaques:<h5>
-            <p>1. Direitos de TV saltaram mais de 6x com a Série A. </p>
-            <p>2. Patrocínios receberam impulso da exposição nacional. </p>
-            <p>3. Negócios com atletas foram discretos em 2024, limitando a Receita total do clube. </p>
-            <p>4. Programa de sócio-torcedor em expansão (42 mil associados) reforça base recorrente de caixa. </p>
+        <h4>Destaques:</h4>
+        <p>1. Direitos de TV saltaram mais de 6x com a Série A. </p>
+        <p>2. Patrocínios receberam impulso da exposição nacional. </p>
+        <p>3. Negócios com atletas foram discretos em 2024, limitando a Receita total do clube. </p>
+        <p>4. Programa de sócio-torcedor em expansão (42 mil associados) reforça base recorrente de caixa. </p>
         <p><b>Nota:</b> Utiliza apenas dados das demonstrações financeiras auditadas.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -7007,7 +7007,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         e aceleração dos investimentos em elenco e infraestrutura, mas também por uma reversão do lucro 
         extraordinário de 2023 para um prejuízo contábil relevante em 2024. O auditor emitiu opinião com ressalva 
         relacionada ao tratamento inadequado do ágio decorrente da aquisição da SAF.</p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. A Receita de R$ 345 mi fica bem distante das Despesas (R$ 491 mi) e do Resultado Financeiro (-R$ 24 mi),
         resultando em prejuízo de R$ 170 mi. </p>
         <p>2. A Geração de Caixa Operacional de R$ 284 mi, não é suficiente para honrar os pagamentos de direitos
@@ -7371,11 +7371,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -7808,11 +7808,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -7897,7 +7897,7 @@ if st.session_state.selected_option == "Análise Individual - 2024":
         <p>O São Paulo elevou sua receita líquida a R$ 722 milhões (+8% a/a), mas encerrou 2024 com déficit de R$ 288 milhões. 
         Expansão de receitas comerciais (naming rights, patrocínios) e matchday indicam potencial para crescer a margem bruta se 
         custos forem contidos. </p>
-        <h5>Destaques:<h5>
+        <h4>Destaques:</h4>
         <p>1. O aumento da Receita é explicado pelo estádio (+69 %) e sócio-torcedor (+152 %), compensando queda em vendas de atletas (-23 %). </p>  
         <p>2. O Resultado Financeiro chama a atenção, -93 milhões, explicado por juros, endividamento e encargos bancários. </p>
         <p>3. O Déficit do exercício triplicou em relação a 2023, atingindo -R$288 milhões . </p>  
@@ -8257,11 +8257,11 @@ if st.session_state.selected_option == "Análise Individual - 2024":
 
         #Plotting Data
         title = dict(
-            title_name = "Receitas e Despesas - 2024",
+            title_name = "Receitas e Despesas/2024",
             title_color = '#B6282F',
             subtitle_name = "(R$ milhões)",
             subtitle_color = '#B6282F',
-            title_name_2 = 'Receitas e Despesas - 2023',
+            title_name_2 = 'Receitas e Despesas/2023',
             title_color_2 = '#344D94',
             subtitle_name_2 = "(R$ milhões)",
             subtitle_color_2 = '#344D94',
@@ -8495,7 +8495,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
                 'Palmeiras': tópico2[75:80][::-1][:5],
                 'Juventude': tópico2[80:85][::-1][:5],
                 'São Paulo': tópico2[85:90][::-1][:5],
-                'Vasco': tópico2[90:95][::-1][:5]
+                'Vasco': tópico2[90:95][::-1][:5],
             }
 
             def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -8728,7 +8728,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -8967,7 +8967,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -9206,7 +9206,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -9445,7 +9445,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -9684,7 +9684,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -9923,8 +9923,8 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
-        }
+            'Vasco': tópico2[90:95][::-1][:5],
+}
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
             import matplotlib.pyplot as plt
@@ -10162,7 +10162,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -10401,7 +10401,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -10640,7 +10640,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -10879,7 +10879,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -11135,7 +11135,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -11414,7 +11414,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_cont, club_image_paths=None):
@@ -11893,7 +11893,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -12232,7 +12232,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -12474,7 +12474,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -12813,7 +12813,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -13053,7 +13053,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[45:48][::-1][:3],
             'Juventude': tópico2[48:51][::-1][:3],
             'São Paulo': tópico2[51:54][::-1][:3],
-            'Vasco': tópico2[54:57][::-1][:3]
+            'Vasco': tópico2[54:57][::-1][:3],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -13286,7 +13286,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[45:48][::-1][:3],
             'Juventude': tópico2[48:51][::-1][:3],
             'São Paulo': tópico2[51:54][::-1][:3],
-            'Vasco': tópico2[54:57][::-1][:3]
+            'Vasco': tópico2[54:57][::-1][:3],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -13526,7 +13526,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[45:48][::-1][:3],
             'Juventude': tópico2[48:51][::-1][:3],
             'São Paulo': tópico2[51:54][::-1][:3],
-            'Vasco': tópico2[54:57][::-1][:3]
+            'Vasco': tópico2[54:57][::-1][:3],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_esport, club_image_paths=None):
@@ -14057,7 +14057,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -14382,7 +14382,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -14617,7 +14617,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -14843,7 +14843,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -15083,7 +15083,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -15316,7 +15316,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -15555,7 +15555,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -15794,7 +15794,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -16033,7 +16033,7 @@ elif st.session_state.selected_option == "Análise Comparativa Simples":
             'Palmeiras': tópico2[75:80][::-1][:5],
             'Juventude': tópico2[80:85][::-1][:5],
             'São Paulo': tópico2[85:90][::-1][:5],
-            'Vasco': tópico2[90:95][::-1][:5]
+            'Vasco': tópico2[90:95][::-1][:5],
         }
 
         def create_enhanced_time_series(years, club_data, highlight, tema_ger, club_image_paths=None):
@@ -21773,7 +21773,7 @@ st.markdown(
     """
     <div style="text-align: center; color: gray; font-size: 0.9em;">
         Almanaque Financeiro da Série A - 2024<br>
-        2025 - @JAmerico1898
+        2025 - José Américo
     </div>
     """,
     unsafe_allow_html=True
