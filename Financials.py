@@ -21748,7 +21748,7 @@ elif st.session_state.selected_option == "Índice de Transparência":
     st.markdown("<h4 style='text-align: center;  color: black;'><br>Metodologia do Índice de Transparência</b></h4>", unsafe_allow_html=True)
 
     #Downloading Transparency Index Methodology
-    button = st.link_button("Metodologia do Índice", 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/55e6685a50b56052dbb6ba674c963a1426044435/Indice%20de%20Transparencia%20-%20Metodologia.pdf')
+    button = st.link_button("Metodologia do Índice", 'https://raw.githubusercontent.com/JAmerico1898/Financials/4eba8118dc3da8978e19cf3d94f9cfb78309e4fb/Indice%20de%20Transparencia%20-%20Metodologia.pdf')
 
     def main1():
 
