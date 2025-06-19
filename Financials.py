@@ -21754,7 +21754,7 @@ elif st.session_state.selected_option == "Índice de Transparência":
 
         # URL of the PDF document
         # Make sure to use a raw string for the file path
-        pdf_url = 'https://raw.githubusercontent.com/JAmerico1898/Financials-2025/55e6685a50b56052dbb6ba674c963a1426044435/Indice%20de%20Transparencia%20-%20Metodologia.pdf'
+        pdf_url = 'https://raw.githubusercontent.com/JAmerico1898/Financials/4eba8118dc3da8978e19cf3d94f9cfb78309e4fb/Indice%20de%20Transparencia%20-%20Metodologia.pdf'
 
         # Button to open PDF in a new tab
         if st.link_button('Metodologia do Índice'):
